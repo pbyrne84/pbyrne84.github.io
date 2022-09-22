@@ -35,20 +35,21 @@ The project has been done with tests so parts are runnable in an observable fash
 ## PHPStorm metadata example and the undead plugin
 
 Not having an implementation or at least a way to communicate generics is unfun. Lot of boilerplate for typed languages or broken IDE
-functionality for untyped. 
+functionality for non explicitly typed. 
 
-https://github.com/pbyrne84/phpstorm-metadata-example
+[https://github.com/pbyrne84/phpstorm-metadata-example](ttps://github.com/pbyrne84/phpstorm-metadata-example)
 
 A long time ago I wrote a version of mockito for PHP that we used to use internally where I worked at the time.
 
-https://github.com/pbyrne84/phpmockito
+[https://github.com/pbyrne84/phpmockito](https://github.com/pbyrne84/phpmockito)
 
 There was another version but that had issues with equality due to it used serialisation to equal values. PHP at the time
 and probably still maybe fatally errors on serialising things like exceptions. This version uses reflection to generate
 something that can be equalled. To go with that I wrote the Intellij plugin
 
-https://github.com/pbyrne84/DynamicReturnTypePlugin
-(was java but auto-switched to kotlin hence the null stuff is quirky as dealing with java nulls is not fun, if it was
+[https://github.com/pbyrne84/DynamicReturnTypePlugin](https://github.com/pbyrne84/DynamicReturnTypePlugin)
+
+(it was java but auto-switched to kotlin hence the null stuff is quirky as dealing with java nulls is not fun, if it was
 still an active project I would have switched to Scala as I prefer Option to ? and Either to throws)
 
 which predates the metadata stuff and grew and grew in use. Almost all the functionality is replaceable by the metadata or 
@@ -76,7 +77,7 @@ to me. Too many dictionary structures in a project and too much magic is the kil
 People come and go, inheriting is always less fun than creating.
 
 In the plugin I added ways via the scriptengine do custom stuff via groovy or javascript. That was marked as deprecated
-https://stackoverflow.com/questions/58179771/nashorn-alternative-for-java-11
+[https://stackoverflow.com/questions/58179771/nashorn-alternative-for-java-11](https://stackoverflow.com/questions/58179771/nashorn-alternative-for-java-11)
 
 Dealing with internal signature changes within the IDE was always fun and had to be integration tested via
 https://github.com/pbyrne84/DynamicReturnTypePluginTestEnvironment
