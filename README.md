@@ -37,7 +37,7 @@ The project has been done with tests so parts are runnable in an observable fash
 Not having an implementation or at least a way to communicate generics is unfun. Lot of boilerplate for typed languages or broken IDE
 functionality for non explicitly typed. 
 
-[https://github.com/pbyrne84/phpstorm-metadata-example](ttps://github.com/pbyrne84/phpstorm-metadata-example)
+[https://github.com/pbyrne84/phpstorm-metadata-example](https://github.com/pbyrne84/phpstorm-metadata-example)
 
 A long time ago I wrote a version of mockito for PHP that we used to use internally where I worked at the time.
 
@@ -79,11 +79,17 @@ People come and go, inheriting is always less fun than creating.
 In the plugin I added ways via the scriptengine do custom stuff via groovy or javascript. That was marked as deprecated
 [https://stackoverflow.com/questions/58179771/nashorn-alternative-for-java-11](https://stackoverflow.com/questions/58179771/nashorn-alternative-for-java-11)
 
-Dealing with internal signature changes within the IDE was always fun and had to be integration tested via
-https://github.com/pbyrne84/DynamicReturnTypePluginTestEnvironment
+Dealing with internal signature changes within the IDE was always fun and had to be integration tested using PHPStorms/Intellij inspections via
+
+[https://github.com/pbyrne84/DynamicReturnTypePluginTestEnvironment](https://github.com/pbyrne84/DynamicReturnTypePluginTestEnvironment)
+
+The inspections should have returned no errors for unresolvable calls. As things grew so did the complexity of calls. If something did not work
+then use the [https://plugins.jetbrains.com/plugin/227-psiviewer](https://plugins.jetbrains.com/plugin/227-psiviewer) plugin to get the 
+signature string and try to decipher how it has been mangled or is incorrect.
+
 Increasing the support within PHPStorm of the more dynamic elements of PHP made it a game of Whac-A-Mole each release.
-Theoretically it was not complicated, just involved reverse engineering what the PSI signatures should be and the fact they chained 
-until a resolution could be made
+Theoretically it was not complicated, it just involved reverse engineering what the PSI signatures should be and the fact they chained 
+until a resolution could be made.
 
 e.g. an example signature that had to be created to enable resolution 
 ```txt
