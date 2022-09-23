@@ -10,7 +10,7 @@ be useful. Medium is a bit too showy for me.
 ## Index
 1. [zio2playground](#zio2playground) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
 2. [Scala Circe Error Handling](#scala-circe-error-rendering) - Change the error rendering to be informative to other humans
-3. [Case Class Pretty Rendering][] - This is useful for showing diffs in 
+3. [Case Class Pretty Rendering][scala-case-class-prettification] - This is useful for showing diffs in scalatest as it renders better.
 3. [PHPStorm based projects](#PHPStorm-based-projects) - Historic intellij plugin life cycle
 
 ## <a name="zio2playground"> zio2playground
@@ -115,7 +115,8 @@ NestedMultiLevel(
 )
 ```
 
-With intellij or something similar when it fails the diff is easily comparable
+With intellij or something similar when it fails the diff is easily comparable. It doesn't try and do anything fancy such as maximum line 
+length as that would potentially break the ease of compare.
 
 
 ## <a name="PHPStorm-based-projects"> PHPStorm metadata example and the undead plugin
