@@ -41,7 +41,7 @@ The project has been done with tests so parts are runnable in an observable fash
    to the log hence number **LoggingSL4JExample** is doing something similar for the java logging calls.
 
 
-## Scala Circe Error Handling
+## <a name="scala-circe-error-rendering" >Scala Circe Error Handling
 [scala-circe-error-rendering](https://github.com/pbyrne84/scala-circe-error-rendering)
 
 When decoding json with circe the default failure message is not really presentable in an informative fashion. You return that error
