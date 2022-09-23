@@ -2,7 +2,7 @@
 
 Even though I do not drink in the week everything I do tries to take into account what it would like deal with 
 a massive hangover (Hangover test). For myself I think is a good simulation of what it is like for other people to deal with it
-afterwards. Though I think torturous hang over based coding empathy training will not be on any HR's todo list soon.
+afterwards. Though I do not think torturous hang over based coding empathy training will be on any HR's todo list soon.
 
 Google doesn't seem to like indexing GitHub repos without a kick and I tend to write documentation in repos that could
 be useful. Medium is a bit too showy for me.
