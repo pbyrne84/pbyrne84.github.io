@@ -74,7 +74,7 @@ The test examples how it renders accumulatively.
 This can be hooked into something like the ErrorAccumulatingCirceSupport for akka http
 [de.heikoseeberger.akkahttpcirce.ErrorAccumulatingCirceSupport](https://github.com/hseeberger/akka-http-json/blob/master/akka-http-circe/src/main/scala/de/heikoseeberger/akkahttpcirce/CirceSupport.scala)
 
-It is/has been in production in various projects.
+It is/has been in production in various projects and always proves useful.
 
 
 
