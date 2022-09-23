@@ -1,9 +1,16 @@
 # Project overviews
 
+
+
+
 Google doesn't seem to like indexing GitHub repos without a kick and I tend to write documentation in repos that could
 be useful. Medium is a bit too showy for me.
 
-## zio2playground
+## Index
+1. [zio2playground](#zio2playground) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
+2. [PHPStorm based projects](#PHPStorm-based-projects) - Historic intellij plugin life cycle
+
+## <a name="zio2playground"> zio2playground
 [zio2playground](https://github.com/pbyrne84/zio2playground)
 
 The project has been done with tests so parts are runnable in an observable fashion.
@@ -32,7 +39,8 @@ The project has been done with tests so parts are runnable in an observable fash
 5. ZIO.log does add to the MDC but only for that call. The logback.xml config adds all MDC
    to the log hence number **LoggingSL4JExample** is doing something similar for the java logging calls.
 
-## PHPStorm metadata example and the undead plugin
+
+## <a name="PHPStorm-based-projects"> PHPStorm metadata example and the undead plugin
 
 Not having an implementation or at least a way to communicate generics is unfun. Lot of boilerplate for typed languages or broken IDE
 functionality for non explicitly typed. 
@@ -43,14 +51,34 @@ A long time ago I wrote a version of mockito for PHP that we used to use interna
 
 [https://github.com/pbyrne84/phpmockito](https://github.com/pbyrne84/phpmockito)
 
-There was another version but that had issues with equality due to it used serialisation to equal values. PHP at the time
-and probably still maybe fatally errors on serialising things like exceptions. This version uses reflection to generate
-something that can be equalled. To go with that I wrote the Intellij plugin
+There was another similar project but that had issues with equality due to it used serialization to equal values. PHP at the time
+and probably still does have fatal errors when serializing things like exceptions and SplFileInfo. This version uses type based factories
+to create something that can be equalled. You can see from the test what is achieved by this.
+
+https://github.com/pbyrne84/phpmockito/blob/master/test/PHPMockito/ToString/ToStringAdaptorFactoryTest.php
+
+THis leads to human-readable errors in verifies etc. Mocking can be made harder than it should be by the implementation such as being 
+stringly based such as java was before generics.
+
+[http://jmock.org/oopsla2004.pdf](http://jmock.org/oopsla2004.pdf)
+```java
+mockLoader.expect(once())
+    .method("load").with( eq(KEY) )
+    .will( returnValue(VALUE) );
+```
+
+Method is not refactor safe and no IDE help for parameters. Not very fun. Implementation and project usage can also completely put people 
+off a concept. I have a rule, the simple tests the complicated and if a project gets to the point where tests cannot be written first
+then the code is really testing the tests. Tests are there to communicate to the people of the future that we really were not
+having a brain fart that day and also to allow us to observe what is happening in a controlled fashion. Bugs come from assumptions,
+ tests allow us and other to prove our assumptions.
+
+To go with that I wrote the Intellij plugin
 
 [https://github.com/pbyrne84/DynamicReturnTypePlugin](https://github.com/pbyrne84/DynamicReturnTypePlugin)
 
-(it was java but auto-switched to kotlin hence the null stuff is quirky as dealing with java nulls is not fun, if it was
-still an active project I would have switched to Scala as I prefer Option to ? and Either to throws)
+It was java but auto-switched to kotlin hence the null stuff is quirky as dealing with java nulls is not fun, if it was
+still an active project I would have switched to Scala as I prefer Option to ? and Either to throws.
 
 which predates the metadata stuff and grew and grew in use. Almost all the functionality is replaceable by the metadata or 
 the generic php doc tags which eventually came into effect. If the phpdoc had been supported then the plugin would never
