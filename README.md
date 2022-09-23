@@ -1,7 +1,7 @@
 # Project overviews
 
 Even though I do not drink in the week everything I do tries to take into account what it would like deal with 
-a massive hangover. For myself I think is a good simulation of what it is like for other people to deal with it
+a massive hangover (Hangover test). For myself I think is a good simulation of what it is like for other people to deal with it
 afterwards. Though I think torturous hang over based coding empathy training will not be on any HR's todo list soon.
 
 Google doesn't seem to like indexing GitHub repos without a kick and I tend to write documentation in repos that could
@@ -118,6 +118,11 @@ NestedMultiLevel(
 With intellij or something similar when it fails the diff is easily comparable. It doesn't try and do anything fancy such as maximum line 
 length as that would potentially break the ease of compare.
 
+I do put this in any project using scalatest as games of spot the difference on failure are needlessly tiring. Especially when
+dealing with theSameElementsAs on collections of case classes. There can have too many things wrong in the match and then the simplest thing
+is to sort then do the diff. There is probably a way to write a matcher that auto sorts on the way in to fix the hoopla that matcher causes.
+**theSameElementsAs** and things like it are a bit of a bug bear as the user is usually thinking of the success and not the potentially 
+anti-social failure.
 
 ## <a name="PHPStorm-based-projects"> PHPStorm metadata example and the undead plugin
 
