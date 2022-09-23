@@ -10,7 +10,8 @@ be useful. Medium is a bit too showy for me.
 ## Index
 1. [zio2playground](#zio2playground) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
 2. [Scala Circe Error Handling](#scala-circe-error-rendering) - Change the error rendering to be informative to other humans
-3. [Case Class Pretty Rendering][scala-case-class-prettification] - This is useful for showing diffs in scalatest as it renders better.
+3. [Case Class Pretty Rendering](#scala-case-class-prettification) - This is useful for showing diffs in scalatest as it renders better.
+4. [Scala http mock](#scalahttpmock) - A proof of concept replacement for wiremock
 3. [PHPStorm based projects](#PHPStorm-based-projects) - Historic intellij plugin life cycle
 
 ## <a name="zio2playground"> zio2playground
@@ -123,6 +124,27 @@ dealing with theSameElementsAs on collections of case classes. There can have to
 is to sort then do the diff. There is probably a way to write a matcher that auto sorts on the way in to fix the hoopla that matcher causes.
 **theSameElementsAs** and things like it are a bit of a bug bear as the user is usually thinking of the success and not the potentially 
 anti-social failure.
+
+## <a name="scalahttpmock"> Scala Http Mock
+[https://github.com/pbyrne84/scalahttpmock](https://github.com/pbyrne84/scalahttpmock/)
+
+A proof of concept replacement for wiremock. Everything is of course tested. Originally it was HTTP4s, I switched it to Jetty though
+as bringing in HTTP4s can cause conflicts. Really it needs to be able to have pluggable backends so it can use akka-http, zio-http or
+http4s with mappers between their implementation of requests and the internal one.
+
+Each of those libraries could change on releases, so it could be fun to keep the backends up to date. A fun future project.
+
+### Why not use wiremock?
+Wiremock is actually quite complicated for what it does. Everything is hidden in static method imports and builders. In Scala we have 
+nicer things such as default values for parameters and variations of copy constructors to override that giving a new instance.
+Things like expectations can be used for verifications in a much more friendly fashion. Verifications before result assertion can
+be a better approach for cleaner test failures but wiremock can make this a lot of effort so this approach is probably not done by example as
+much as it should be. Knowing a remote service was not called at all or with the wrong values is a much better failure than expected true and 
+got false.
+
+Though wiremock is a lot better if you use 1 instance per service you are faking, just having 1 wiremock over multiple services
+renders the nearest match error reporting useless. Using one instance of this for multiple services would also render the nearest 
+match error reporting useless. Basically you can be told unfriendly misleading garbage on failure in either case.
 
 ## <a name="PHPStorm-based-projects"> PHPStorm metadata example and the undead plugin
 
