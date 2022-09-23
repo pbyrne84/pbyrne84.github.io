@@ -1,7 +1,8 @@
 # Project overviews
 
-
-
+Even though I do not drink in the week everything I do tries to take into account what it would like deal with 
+a massive hangover. For myself I think is a good simulation of what it is like for other people to deal with it
+afterwards. Though I think torturous hang over based coding empathy training will not be on any HR's todo list soon.
 
 Google doesn't seem to like indexing GitHub repos without a kick and I tend to write documentation in repos that could
 be useful. Medium is a bit too showy for me.
@@ -9,6 +10,7 @@ be useful. Medium is a bit too showy for me.
 ## Index
 1. [zio2playground](#zio2playground) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
 2. [Scala Circe Error Handling](#scala-circe-error-rendering) - Change the error rendering to be informative to other humans
+3. [Case Class Pretty Rendering][] - This is useful for showing diffs in 
 3. [PHPStorm based projects](#PHPStorm-based-projects) - Historic intellij plugin life cycle
 
 ## <a name="zio2playground"> zio2playground
@@ -76,6 +78,44 @@ This can be hooked into something like the ErrorAccumulatingCirceSupport for akk
 
 It is/has been in production in various projects and always proves useful.
 
+## <a name="scala-case-class-prettification"> Scala Case Class Prettification
+
+[scala-case-class-prettification](https://github.com/pbyrne84/scala-case-class-prettification)
+
+In scalatest there is a fairly hidden way to change the rendering off diffs on failure.
+
+```scala
+import org.scalactic.Prettifier
+
+object Prettifiers {
+  implicit val prettifier: Prettifier = Prettifier.apply {
+    case a: AnyRef if CaseClassPrettifier.shouldBeUsedInTestMatching(a) =>
+      new CaseClassPrettifier().prettify(a)
+
+    case a: Any => Prettifier.default(a)
+  }
+}
+```
+
+You may have to do a clean compile to get the implicit to compile in. If you have a look at the tests you can 
+see it is very similar how zio renders errors 
+
+[CaseClassPrettifierTest.scala](https://github.com/pbyrne84/scala-case-class-prettification/blob/master/modules/scala-case-class-prettification/src/test/scala/com/bintray/scala/prettification/CaseClassPrettifierTest.scala)
+
+e.g.
+```
+NestedMultiLevel(
+  fieldName1 = 4,
+  fieldName2 = NestedBasic(
+    fieldName1 = 4,
+    fieldName2 = SinglePrimitive(
+      fieldName1 = 4
+    )
+  )
+)
+```
+
+With intellij or something similar when it fails the diff is easily comparable
 
 
 ## <a name="PHPStorm-based-projects"> PHPStorm metadata example and the undead plugin
