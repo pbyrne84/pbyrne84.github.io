@@ -1,4 +1,4 @@
-# Project overviews
+# Project overviews for PByrne84
 
 Even though I do not drink in the week everything I do tries to take into account what it would like deal with 
 a massive hangover (Hangover test). For myself I think is a good simulation of what it is like for other people to deal with it
@@ -8,122 +8,14 @@ Google doesn't seem to like indexing GitHub repos without a kick and I tend to w
 be useful. Medium is a bit too showy for me.
 
 ## Index
-1. [zio2playground](#zio2playground) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
-2. [Scala Circe Error Handling](#scala-circe-error-rendering) - Change the error rendering to be informative to other humans
+1. [zio2playground](Zio2Playgound.html) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
+2. [Scala Circe Error Rendering](#scala-circe-error-rendering) - Change the error rendering to be informative to other humans
 3. [Case Class Pretty Rendering](#scala-case-class-prettification) - This is useful for showing diffs in scalatest as it renders better.
 4. [Scala http mock](#scalahttpmock) - A proof of concept replacement for wiremock
 3. [PHPStorm based projects](#PHPStorm-based-projects) - Historic intellij plugin life cycle
 
-## <a name="zio2playground"> zio2playground
-[zio2playground](https://github.com/pbyrne84/zio2playground)
-
-The project has been done with tests so parts are runnable in an observable fashion.
-
-(exert from the projects README that has all the instructions)
-1. Service layering in tests including shared layering. As mentioned there are some gotchas.
-2. How to set up an external tool in intellij, this enables run a test without a plugin without
-   having to focus off a coding tab.
-3. Tracing through the application using OpenTelemetry, this enables Zipkin etc. This includes setting
-   current context from incoming headers. We want to keep the trace across system boundaries.
-   Not having this sort of stuff can make a fun day a much less than fun day.
-4. How we log the trace in the logging, so we can get some kibana or similar goodness. This implementation uses logback
-   as not everything is likely to be pure ZIO.log in an application. There is an example of monkeying around
-   with the MDC in **LoggingSL4JExample**. This handles java util and direct SL4J logging which probably simulates a lot
-   of production environments. For example, I don't think a functionally pure version of PAC4J is on anyone's todo list.
-   Anything security based should be implemented as few times as possible, unless you like crackers.
-
-   <br/>MDC stuff does have its limitations due to issues with copying between threads, ideally async
-   is being done by the effect system and the java stuff is not async by nature.
-
-   It is a bit hacky but an idea of how to do it, I had to hijack the zio package to read the fiber ref to get the
-   **zio.logging.logContext** where this is held.
-
-   **B3TracingOps.serverSpan** creates a span and add it to the logging context.
-
-5. ZIO.log does add to the MDC but only for that call. The logback.xml config adds all MDC
-   to the log hence number **LoggingSL4JExample** is doing something similar for the java logging calls.
 
 
-## <a name="scala-circe-error-rendering" >Scala Circe Error Handling
-[scala-circe-error-rendering](https://github.com/pbyrne84/scala-circe-error-rendering)
-
-When decoding json with circe the default failure message is not really presentable in an informative fashion. You return that error
-to a caller it will not help them fix their payload, which ideally is what you want else you may have to get involved. Also logging
-these problems in an informative fashion is useful.
-
-The test examples how it renders accumulatively.
-
-[Rendering test](https://github.com/pbyrne84/scala-circe-error-rendering/blob/main/src/test/scala/com/github/pbyrne84/circe/rendoring/CirceErrorRenderingSpec.scala)
-
-```json
-{
-  "xField1" : {
-    "aField3" : {
-      "bField1" : "the field is missing"
-    },
-    "aField2" : {
-      "cField2" : "the field is missing",
-      "cField1" : "the field is missing"
-    },
-    "aField1" : "the field is missing"
-  },
-  "xField2" : "the field is missing",
-  "xField3" : "the field is not the correct type, expected 'Boolean'",
-  "xField4" : "the field is not the correct type, expected 'Array'",
-  "xField5" : "custom error message"
-}
-```
-
-This can be hooked into something like the ErrorAccumulatingCirceSupport for akka http
-[de.heikoseeberger.akkahttpcirce.ErrorAccumulatingCirceSupport](https://github.com/hseeberger/akka-http-json/blob/master/akka-http-circe/src/main/scala/de/heikoseeberger/akkahttpcirce/CirceSupport.scala)
-
-It is/has been in production in various projects and always proves useful.
-
-## <a name="scala-case-class-prettification"> Scala Case Class Prettification
-
-[scala-case-class-prettification](https://github.com/pbyrne84/scala-case-class-prettification)
-
-In scalatest there is a fairly hidden way to change the rendering off diffs on failure.
-
-```scala
-import org.scalactic.Prettifier
-
-object Prettifiers {
-  implicit val prettifier: Prettifier = Prettifier.apply {
-    case a: AnyRef if CaseClassPrettifier.shouldBeUsedInTestMatching(a) =>
-      new CaseClassPrettifier().prettify(a)
-
-    case a: Any => Prettifier.default(a)
-  }
-}
-```
-
-You may have to do a clean compile to get the implicit to compile in. If you have a look at the tests you can 
-see it is very similar how zio renders errors 
-
-[CaseClassPrettifierTest.scala](https://github.com/pbyrne84/scala-case-class-prettification/blob/master/modules/scala-case-class-prettification/src/test/scala/com/bintray/scala/prettification/CaseClassPrettifierTest.scala)
-
-e.g.
-```
-NestedMultiLevel(
-  fieldName1 = 4,
-  fieldName2 = NestedBasic(
-    fieldName1 = 4,
-    fieldName2 = SinglePrimitive(
-      fieldName1 = 4
-    )
-  )
-)
-```
-
-With intellij or something similar when it fails the diff is easily comparable. It doesn't try and do anything fancy such as maximum line 
-length as that would potentially break the ease of compare.
-
-I do put this in any project using scalatest as games of spot the difference on failure are needlessly tiring. Especially when
-dealing with theSameElementsAs on collections of case classes. There can have too many things wrong in the match and then the simplest thing
-is to sort then do the diff. There is probably a way to write a matcher that auto sorts on the way in to fix the hoopla that matcher causes.
-**theSameElementsAs** and things like it are a bit of a bug bear as the user is usually thinking of the success and not the potentially 
-anti-social failure.
 
 ## <a name="scalahttpmock"> Scala Http Mock
 [https://github.com/pbyrne84/scalahttpmock](https://github.com/pbyrne84/scalahttpmock/)
