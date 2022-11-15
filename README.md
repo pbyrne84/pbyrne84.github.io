@@ -9,12 +9,10 @@ be useful. Medium is a bit too showy for me.
 
 ## Index
 1. [zio2playground](Zio2Playgound.html) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
-2. [Scala Circe Error Rendering](#scala-circe-error-rendering) - Change the error rendering to be informative to other humans
-3. [Case Class Pretty Rendering](#scala-case-class-prettification) - This is useful for showing diffs in scalatest as it renders better.
+2. [Scala Circe Error Rendering](ScalaCirceErrorHandling.html) - Change the error rendering to be informative to other humans
+3. [Case Class Pretty Rendering](CaseClassPrettyRendering.html) - This is useful for showing diffs in scalatest as it renders better.
 4. [Scala http mock](#scalahttpmock) - A proof of concept replacement for wiremock
 3. [PHPStorm based projects](#PHPStorm-based-projects) - Historic intellij plugin life cycle
-
-
 
 
 ## <a name="scalahttpmock"> Scala Http Mock
