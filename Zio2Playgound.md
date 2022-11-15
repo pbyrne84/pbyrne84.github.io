@@ -1,4 +1,4 @@
-#  zio2playground (tracing/layering/logging)
+#  zio2playground (ZIO 2/Scala/tracing/layering/logging)
 
 Full readme and code can be found at https://github.com/pbyrne84/zio2playground
 
