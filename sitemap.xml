@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
   <url>
     <loc>https://pbyrne84.github.io/</loc>
-    <lastmod>2022-11-15T16:17:29+00:00</lastmod>
+    <lastmod>2022-11-16T10:30:56+00:00</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://pbyrne84.github.io/Zio2Playgound.html</loc>
-    <lastmod>2022-11-15T16:17:29+00:00</lastmod>
+    <lastmod>2022-11-16T10:30:56+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://pbyrne84.github.io/ScalaCirceErrorHandling.html</loc>
-    <lastmod>2022-11-15T16:17:29+00:00</lastmod>
+    <lastmod>2022-11-16T10:30:56+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://pbyrne84.github.io/CaseClassPrettyRendering.html</loc>
-    <lastmod>2022-11-15T16:17:29+00:00</lastmod>
+    <lastmod>2022-11-16T10:30:56+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://pbyrne84.github.io/ScalaHttpMock.html</loc>
+    <lastmod>2022-11-16T10:30:56+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://pbyrne84.github.io/PhpStormBasedProjects.html</loc>
+    <lastmod>2022-11-16T10:30:56+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
