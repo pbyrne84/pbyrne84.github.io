@@ -1,6 +1,6 @@
 #  zio2playground (ZIO 2/Scala/tracing/layering/logging/testing)
 
-Full readme and code can be found at https://github.com/pbyrne84/zio2playground
+Full readme and code can be found at [https://github.com/pbyrne84/zio2playground](https://github.com/pbyrne84/zio2playground)
 
 The project has been done with tests so parts are runnable in an observable fashion.
 
