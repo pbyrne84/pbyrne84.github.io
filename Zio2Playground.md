@@ -28,3 +28,5 @@ The project has been done with tests so parts are runnable in an observable fash
 5. ZIO.log does add to the MDC but only for that call. The logback.xml config adds all MDC
    to the log hence number **LoggingSL4JExample** is doing something similar for the java logging calls.
 
+
+This knowledge also applies to [Smithy4sZioOpentracing.md](Smithy4sZioOpentracing.md)
