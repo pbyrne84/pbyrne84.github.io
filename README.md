@@ -1,4 +1,3 @@
-{% raw %}{% seo %}{% endraw %}
 
 # Project overviews for PByrne84
 

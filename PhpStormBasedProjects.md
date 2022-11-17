@@ -1,5 +1,4 @@
 
-
 # PHPStorm metadata example and the undead plugin
 
 Not having an implementation or at least a way to communicate generics is unfun. Lot of boilerplate for typed languages or broken IDE
