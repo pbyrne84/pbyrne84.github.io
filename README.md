@@ -1,3 +1,5 @@
+{% raw %}{% seo %}{% endraw %}
+
 # Project overviews for PByrne84
 
 Even though I do not drink in the week everything I do try to take into account what it would like deal with 
