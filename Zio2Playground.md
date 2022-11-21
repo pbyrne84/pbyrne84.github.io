@@ -1,4 +1,5 @@
 #  ZIO 2/Scala/tracing/layering/logging/testing/OpenTelemetry
+**zio2playground**
 
 Full readme and code can be found at [https://github.com/pbyrne84/zio2playground](https://github.com/pbyrne84/zio2playground)
 
