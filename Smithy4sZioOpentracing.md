@@ -1,4 +1,4 @@
-# Smithy4s ZIO Opentracing
+# Smithy4s ZIO Opentracing (ZIO 2/Scala/tracing/layering/logging/testing/OpenTelemetry)
 
 This utilises the knowledge learnt from [Zio2Playground.html](Zio2Playground.html) and applies it to 
 [https://disneystreaming.github.io/smithy4s/](https://disneystreaming.github.io/smithy4s/).
