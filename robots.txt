@@ -1,4 +1,5 @@
-User-agent: *
-Allow: /
-
 Sitemap: https://pbyrne84.github.io/sitemap.xml
+
+User-agent: *
+Disallow:
+
