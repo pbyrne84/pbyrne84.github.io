@@ -1,20 +1,35 @@
-
 # Project overviews for PByrne84
 
-Even though I do not drink in the week everything I do try to take into account what it would like deal with 
-a massive hangover (Hangover test). For myself I think is a good simulation of what it is like for other people to deal with it
-afterwards. Though I do not think torturous hang over based coding empathy training will be on any HR's todo list soon.
-
 Google doesn't seem to like indexing GitHub repos without a kick and I tend to write documentation in repos that could
-be useful. Medium is a bit too showy for me.
+be useful.
 
 All things have tests/examples showing usage.
 
 ## Index
-1. [zio2playground](Zio2Playground.html) - ZIO 2 project exampling logging and http with telemetry (B3), shared test layers, testing etc.
-2. [Smithy4s ZIO Opentracing](Smithy4sZioOpentracing.html) - Expands on above, though using smithy4s and http4s.
-3. [Native Scala lambdas](NativeScalaLambdas.md) - Building scala native lambdas using graal easily with Pulumi code as infrastructure for testing.
-2. [Scala Circe Error Rendering](ScalaCirceErrorHandling.html) - Change the error rendering to be informative to other humans
-3. [Case Class Pretty Rendering](CaseClassPrettyRendering.html) - This is useful for showing diffs in scalatest as it renders better.
-4. [Scala http mock](ScalaHttpMock.html) - A proof of concept Scala replacement for wiremock with the majority of usual REST functions.
-3. [PHPStorm based projects](PhpStormBasedProjects.html) - Historic intellij plugin life cycle that had 50000 downloads.
+
+* [Scala Sbt Lib Resolver Cli](ScalaSbtLibResolverCli.html) - ZIO 2 native command line project
+  using STTP that enables sbt entry generation for libs/plugins/compiler plugins.
+* [zio2playground](Zio2Playground.html) - ZIO 2 project exampling logging and http with telemetry (B3), shared test
+  layers, testing etc.
+* [Smithy4s ZIO Opentracing](Smithy4sZioOpentracing.html) - Expands on above, though using smithy4s and http4s.
+* [Native Scala lambdas](NativeScalaLambdas.html) - Building scala native lambdas using ZIO and graal easily with Pulumi
+  code as infrastructure for testing.
+* [Scala Circe Error Rendering](ScalaCirceErrorHandling.html) - Change the error rendering to be informative to other
+  humans
+* [Case Class Pretty Rendering](CaseClassPrettyRendering.html) - This is useful for showing diffs in scalatest as it
+  renders better.
+* [Scala http mock](ScalaHttpMock.html) - A proof of concept Scala replacement for wiremock with the majority of usual
+  REST functions.
+* [PHPStorm based projects](PhpStormBasedProjects.html) - Historic intellij plugin life cycle that had 50000 downloads.
+
+## Quick project direct links
+
+* <https://github.com/pbyrne84/scala-sbt-lib-resolver-cli>
+* <https://github.com/pbyrne84/zio2playground>
+* <https://github.com/pbyrne84/smithy4s-zio-opentracing>
+* <https://github.com/pbyrne84/scala_native_lambda_test>
+* <https://github.com/pbyrne84/scala-circe-error-rendering>
+* <https://github.com/pbyrne84/scala-case-class-prettification>
+* <https://github.com/pbyrne84/scalahttpmock>
+* <https://github.com/pbyrne84/phpstorm-metadata-example>
+
