@@ -11,7 +11,7 @@ I built this as I always forget to add plugins etc. Some libraries do not search
 ## Example output
 
 ```bash
-scala-sbt-lib-resolver-cli-linux --config internal --hotlist zio-app --debug --version
+scala-sbt-lib-resolver-cli-linux --config internal --hotlist zio-app --debug --version 3
 ```
 
 Will produce
