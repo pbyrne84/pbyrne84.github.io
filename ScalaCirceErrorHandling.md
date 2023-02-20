@@ -28,7 +28,31 @@ The test examples how it renders accumulatively.
 }
 ```
 
-This can be hooked into something like the ErrorAccumulatingCirceSupport for akka http
+This can be hooked into something like the ErrorAccumulatingCirceSupport for Akka HTTP
 [de.heikoseeberger.akkahttpcirce.ErrorAccumulatingCirceSupport](https://github.com/hseeberger/akka-http-json/blob/master/akka-http-circe/src/main/scala/de/heikoseeberger/akkahttpcirce/CirceSupport.scala)
 
 It is/has been in production in various projects and always proves useful.
+
+A test exampling this can be found at
+[AkkaHttpCirceErrorRenderingSpec.scala#L43](https://github.com/pbyrne84/scala-circe-error-rendering/blob/c300c414cde00b3ee5bc8778ef38df1fce095a90/src/test/scala/com/github/pbyrne84/circe/rendering/AkkaHttpCirceErrorRenderingSpec.scala#L43)
+
+Example Akka HTTP error handling code
+```scala
+  .handle {
+    case malformedRequestContentRejection: MalformedRequestContentRejection =>
+      malformedRequestContentRejection.cause match {
+        case decodingFailuresException: ErrorAccumulatingCirceSupport.DecodingFailures =>
+          val renderedErrorJson: Json = CirceErrorRendering.renderErrors(decodingFailuresException.failures)
+
+          complete(StatusCodes.BadRequest,
+                   ErrorResponse("The payload was invalid with the following errors", renderedErrorJson))
+
+        case _ =>
+          //Something more sensible should be done here
+          complete(
+            StatusCodes.BadRequest,
+            s"The payload was invalid with the following errors ${malformedRequestContentRejection.toString}"
+          )
+      }
+  }
+```
