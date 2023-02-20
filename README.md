@@ -14,8 +14,8 @@ All things have tests/examples showing usage.
 * [Smithy4s ZIO Opentracing](Smithy4sZioOpentracing.html) - Expands on above, though using smithy4s and http4s.
 * [Native Scala lambdas](NativeScalaLambdas.html) - Building scala native lambdas using ZIO and graal easily with Pulumi
   code as infrastructure for testing.
-* [Scala Circe Error Rendering](ScalaCirceErrorHandling.html) - Change the error rendering to be informative to other
-  humans
+* [Scala Circe Error Rendering](ScalaCirceErrorHandling.html) - Using error accumulation to generate more human friendly messages.
+  Includes an example with AKKA Http as service to service interactions are fragile so clear error handling is highly beneficial. 
 * [Case Class Pretty Rendering](CaseClassPrettyRendering.html) - This is useful for showing diffs in scalatest as it
   renders better.
 * [Scala http mock](ScalaHttpMock.html) - A proof of concept Scala replacement for wiremock with the majority of usual
