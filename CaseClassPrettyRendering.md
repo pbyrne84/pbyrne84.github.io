@@ -28,7 +28,7 @@ object Prettifiers {
 You may have to do a clean compile to get the implicit to compile in. If you have a look at the tests you can
 see it is very similar how zio renders errors
 
-[CaseClassPrettifierTest.scala](https://github.com/pbyrne84/scala-case-class-prettification/blob/master/modules/scala-case-class-prettification/src/test/scala/com/bintray/scala/prettification/CaseClassPrettifierTest.scala)
+[CaseClassPrettifierTest.scala](https://github.com/pbyrne84/scala-case-class-prettification/blob/master/modules/scala-case-class-prettification/src/test/scala/uk/org/devthings/scala/prettification/caseclass/CaseClassPrettifierTest.scala)
 
 e.g.
 ```
