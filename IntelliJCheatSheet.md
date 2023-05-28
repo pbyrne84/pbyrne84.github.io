@@ -115,7 +115,7 @@ Similar to navigate to class, but a lot more eye noise.
 
 ![navigate-to-file.png](images/intellij/navigate-to-file.png)
 
-#### shift-shift Navigate all
+### Shift-Shift Navigate all
 ![navigate-all.png](images/intellij/navigate-all.png)
 
 I just use this shortcut for methods/symbols as it is CMD-SHIFT-ALT-O is a bit too contortionist. You could use this keyboard
