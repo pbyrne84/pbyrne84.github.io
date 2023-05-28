@@ -7,6 +7,7 @@ All things have tests/examples showing usage.
 
 ## Index
 
+* [Intellij Cheat Sheet](IntelliJCheatSheet.html) - How to use Intellij effectively minimizing the use of a mouse etc. 
 * [Scala Sbt Lib Resolver Cli](ScalaSbtLibResolverCli.html) - ZIO 2 native command line project
   using STTP that enables sbt entry generation for libs/plugins/compiler plugins.
 * [zio2playground](Zio2Playground.html) - ZIO 2 project exampling logging and http with telemetry (B3), shared test
