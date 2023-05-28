@@ -2,23 +2,11 @@
 # Scala Http Mock
 [https://github.com/pbyrne84/scalahttpmock](https://github.com/pbyrne84/scalahttpmock/)
 
-A proof of concept replacement for wiremock. Everything is of course tested. Originally it was HTTP4s, I switched it to Jetty though
-as bringing in HTTP4s can cause conflicts. Really it needs to be able to have pluggable backends so it can use akka-http, zio-http or
-http4s with mappers between their implementation of requests and the internal one.
+A proof of concept replacement for wiremock. Everything is, of course, tested. Originally it was HTTP4s, I switched it to Jetty though
+as bringing in HTTP4s can cause conflicts. Really it needs to be able to have pluggable backends, so it can use akka-http, zio-http or
+HTT4S with mappers between their implementation of requests and the internal one.
 
 Each of those libraries could change on releases, so it could be fun to keep the backends up to date. A fun future project.
-
-## Why not use wiremock?
-Wiremock is actually quite complicated for what it does. Everything is hidden in static method imports and builders. In Scala we have
-nicer things such as default values for parameters and variations of copy constructors to override that giving a new instance.
-Things like expectations can be used for verifications in a much more friendly fashion. Verifications before result assertion can
-be a better approach for cleaner test failures but wiremock can make this a lot of effort so this approach is probably not done by example as
-much as it should be. Knowing a remote service was not called at all or with the wrong values is a much better failure than expected true and
-got false.
-
-Though wiremock is a lot better if you use 1 instance per service you are faking, just having 1 wiremock over multiple services
-renders the nearest match error reporting useless. Using one instance of this for multiple services would also render the nearest
-match error reporting useless. Basically you can be told unfriendly misleading garbage on failure in either case.
 
 ## Example use
 
