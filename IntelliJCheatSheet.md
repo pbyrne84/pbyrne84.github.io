@@ -20,7 +20,7 @@ Cmd+Shift-A is the most useful shortcut as it helps you find and use any command
 it is ctrl-shift-a
 
 On the Mac also
-https://intellij-support.jetbrains.com/hc/en-us/articles/360005137400-Cmd-Shift-A-hotkey-opens-Terminal-with-apropos-search-instead-of-the-Find-Action-dialog
+<https://intellij-support.jetbrains.com/hc/en-us/articles/360005137400-Cmd-Shift-A-hotkey-opens-Terminal-with-apropos-search-instead-of-the-Find-Action-dialog>
 ```
 Cmd+Shift+A hotkey opens Terminal with "apropos" search instead of the Find Action dialog
 ```
