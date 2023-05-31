@@ -112,6 +112,14 @@ or for java
 
 ![java-extract-variable.png](images/intellij/java-extract-variable.png)
 
+#### Usual usage
+Extracting to a variable can add clarity to the code
+<https://refactoring.guru/extract-variable>
+We are human, it helps if we communicate our mental journey and thought processes. Giving things 
+a nice name helps others(and you 6 months later) to skim code accurately. We spend a lot of out time
+saying "this is not what I want" when going through code looking for something, so it is good if we can
+speed that up as much as possible by helping things be clear.
+
 
 ### Alt+F7 Find usages
 This will find all the usages of something by type (method/class etc.). In the results pane, there is an eye symbol that allows changing of 
