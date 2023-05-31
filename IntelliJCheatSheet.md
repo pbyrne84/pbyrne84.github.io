@@ -51,14 +51,14 @@ As the path can also always be shown it makes it easy to copy it.
 
 ## Most used keyboard shortcuts
 Alt is the weird track like key near command on the Mac (using Alt is too simple)
-https://setapp.com/how-to/how-to-find-the-alt-key-on-mac#:~:text=The%20Alt%20Key%20is%20the,back%20to%20these%20functions%20later.
+<https://setapp.com/how-to/how-to-find-the-alt-key-on-mac#:~:text=The%20Alt%20Key%20is%20the,back%20to%20these%20functions%20later>.
 
 Learning these frees up the left panel from having to have project view open (mouse navigating is not scalable) and being able 
 to put a terminal/debugger/test run thing there as well. Project view just becomes an occasional reference point.
 
 ### Keymaps
 Keymaps can be found here
-https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
+<https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf>
 
 Or simply open Cmd-Shift-A "keyboard" and you should see "Keyboard Shortcuts PDF" in the list of options.
 
