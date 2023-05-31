@@ -1,4 +1,4 @@
-****# IntelliJCheatSheet
+## IntelliJCheatSheet
 
 I personally add CTRL mappings as well to the CMD ones on Mac otherwise all my muscle memory gets destroyed for Linux/Windows.
 Ctrl is also easier to hit on a normal keyboard (ctrl-shift versus cmd-shift, ctrl-z etc).
@@ -9,6 +9,11 @@ Hints for MacBook owners, turn on function keys as F2(next/previous highlighted 
 are your best-est friends. Hitting Fn key is very uncomfortable, and hitting the function keys should be the same as hitting
 any other key. How often do you really need to change volume control etc.? Find usages alone is a multi use per hour action.
 
+**System settings->keyboard->touchbar settings**
+
+![disable-the-devil-spawn.png](images/intellij/disable-the-devil-spawn.png)
+
+Sometimes different is just differemt for the sake of it.
 
 ### Cmd+Shift-A (Ctrl-shift-a on Linux and Windows)
 Cmd+Shift-A is the most useful shortcut as it helps you find and use any command (displays shortcut as well). On Windows/Linux 
@@ -62,6 +67,12 @@ Or simply open Cmd-Shift-A "keyboard" and you should see "Keyboard Shortcuts PDF
 ![run-action.png](images/intellij/run-action.png)
 
 
+### Alt-F1 show file location
+I use this to open the project pain. For example, I will open a file in the location I want a new file in then Alt-F1 and then 
+use the keyboard shortcut (CMD-N)
+
+![img.png](images/intellij/show-file-location.png)
+
 ### Shift-F6 Rename
 I probably use this multiple times on everything. Naming is hard :)
 
@@ -69,6 +80,37 @@ I probably use this multiple times on everything. Naming is hard :)
 
 Sometimes it will do it inline though sometimes it will offer a modal. Rename a base class and Intellij will offer renaming of 
 any children etc.
+
+#### Really cool rename usage that saves typing (and spelling issues)
+If you choose to rename a variable then it will give you options based on type
+
+![img.png](images/intellij/impress-your-friends-with-rename.png)
+
+Sometimes you will want to prefix, so you can select the one you want to prefix then I just rename again and add the prefix. Intellij makes my typing so much worse by doing most of the work.
+
+### Cmd-Alt-V Extract variable refactoring 
+
+#### Really cool usage that also saves a lot of typing (even makes java more pleasant)
+
+Instead of typing all of
+
+```scala
+val domInputSource = new DOMInputSource
+```
+
+or 
+
+```java
+DOMInputSource domInputSource = new DOMInputSource
+```
+
+you can simply
+
+![scala-extract-variable.png](images/intellij/scala-extract-variable.png)
+
+or for java 
+
+![java-extract-variable.png](images/intellij/java-extract-variable.png)
 
 
 ### Alt+F7 Find usages
@@ -137,7 +179,7 @@ one by one to find the interaction. These interactions are an example of Murphy'
 It gives me an idea for a sbt plugin that individually runs changed test cases to detect contamination. Though it would
 slow down builds due everything having to hard restart.
 
-### Cmd-Shift-R/Cmd-R (Ctrl-shift-F10/Shift-F10)
+### Ctrl-Shift-R/Ctrl-R (Ctrl-shift-F10/Shift-F10)
 
 **Cmd-Shift-R** will run what is selected. If in a test case it wil run the grouping you have selected in WordSpec etc.
 For example in WordSpec you can divide things up per method nicely etc. and only run those tests easily.
