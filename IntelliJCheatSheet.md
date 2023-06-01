@@ -98,25 +98,31 @@ Instead of typing all of
 val domInputSource = new DOMInputSource
 ```
 
-or 
+you can simply
+
+![scala-extract-variable.png](images/intellij/scala-extract-variable1.png)
+
+and then
+
+![scala-extract-variable.png](images/intellij/scala-extract-variable2.png)
+ 
+or for **Java** instead of typing this adventure
 
 ```java
 DOMInputSource domInputSource = new DOMInputSource
 ```
 
-you can simply
+![java-extract-variable1](images/intellij/java-extract-variable1.png)
 
-![scala-extract-variable.png](images/intellij/scala-extract-variable.png)
+and then it will go to
 
-or for java 
-
-![java-extract-variable.png](images/intellij/java-extract-variable.png)
+![java-extract-variable2.png](images/intellij/java-extract-variable2.png) 
 
 #### Usual usage
 Extracting to a variable can add clarity to the code
 <https://refactoring.guru/extract-variable>
 We are human, it helps if we communicate our mental journey and thought processes. Giving things 
-a nice name helps others(and you 6 months later) to skim code accurately. We spend a lot of out time
+a nice name helps others(and you 6 months later) to skim code accurately. We spend a lot of our time
 saying "this is not what I want" when going through code looking for something, so it is good if we can
 speed that up as much as possible by helping things be clear.
 
