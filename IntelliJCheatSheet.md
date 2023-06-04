@@ -3,6 +3,14 @@
 I personally add CTRL mappings as well to the CMD ones on Mac otherwise all my muscle memory gets destroyed for Linux/Windows.
 Ctrl is also easier to hit on a normal keyboard (ctrl-shift versus cmd-shift, ctrl-z etc).
 
+## Keymaps
+Keymaps can be found here
+<https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf>
+
+Or simply open Cmd-Shift-A "keyboard" and you should see "Keyboard Shortcuts PDF" in the list of options.
+On Mac's things can get a bit random so some things may be like Linux/Windows. Historically, this is how things were, but
+people asked for keymaps to be OSX centric when coming to WebStorm etc. so there was a divergence.
+
 ## Tips
 ### Turn on function keys as default instead of Touch-bar etc. as hitting Fn key will be highly contorting and make things uncomfortable
 Hints for MacBook owners, turn on function keys as F2(next/previous highlighted error), shift-F6(rename) and alt-f7 (find usages) 
@@ -56,11 +64,28 @@ Alt is the weird track like key near command on the Mac (using Alt is too simple
 Learning these frees up the left panel from having to have project view open (mouse navigating is not scalable) and being able 
 to put a terminal/debugger/test run thing there as well. Project view just becomes an occasional reference point.
 
-### Keymaps
-Keymaps can be found here
-<https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf>
+Think of this as learning movements that can be strung together that enable great speed. Using the keyboard is percussive.
+When using keyboard shortcuts, it is like playing chords. Multiple keys together to create something greater than their sum.
+I feel my brain change when I pick up a mouse as it is more like a stringed instrument, it is more of a bowed 
+motion with less accuracy. 
 
-Or simply open Cmd-Shift-A "keyboard" and you should see "Keyboard Shortcuts PDF" in the list of options.
+Trackpads of any form just feel bad, okay for browsing, useless for any speed due to their lack of 
+fast accuracy. Mouse you can achieve a sense of hectic playing, touchpads are stuck in a slow symphony.
+
+All pointing devices should be tested for viability by trying to play **Doom Eternal** with them. That is the way :)
+
+If you are good at typing on a laptop and don't have a mouse then this plugin is good to cut down on trackpad usage.
+It turns things into a game where your typing can improve with your speed.
+
+**AceJump**
+
+<https://plugins.jetbrains.com/plugin/7086-acejump>
+
+```
+AceJump allows you to quickly navigate the caret to any position visible in the editor. See a demo of AceJump in action! Simply hit "ctrl+;", 
+type a character, then type the matching character to Ace Jump.
+```
+
 
 ### Cmd-Shift-A (Ctrl-shift-A) Run Action
 
@@ -69,7 +94,7 @@ Or simply open Cmd-Shift-A "keyboard" and you should see "Keyboard Shortcuts PDF
 
 ### Alt-F1 show file location
 I use this to open the project pain. For example, I will open a file in the location I want a new file in then Alt-F1 and then 
-use the keyboard shortcut (CMD-N)
+use the keyboard shortcut (CMD-N or Alt-Insert)
 
 ![img.png](images/intellij/show-file-location.png)
 
@@ -88,7 +113,8 @@ If you choose to rename a variable then it will give you options based on type
 
 Sometimes you will want to prefix, so you can select the one you want to prefix then I just rename again and add the prefix. Intellij makes my typing so much worse by doing most of the work.
 
-### Cmd-Alt-V Extract variable refactoring 
+### Cmd-Alt-V (Ctrl-shift-V) Extract variable refactoring (Intellij refers to this as Introduce not Extract)
+<https://refactoring.guru/extract-variable>
 
 #### Really cool usage that also saves a lot of typing (even makes java more pleasant)
 
@@ -121,11 +147,30 @@ and then it will go to
 #### Usual usage
 Extracting to a variable can add clarity to the code
 <https://refactoring.guru/extract-variable>
+
 We are human, it helps if we communicate our mental journey and thought processes. Giving things 
 a nice name helps others(and you 6 months later) to skim code accurately. We spend a lot of our time
 saying "this is not what I want" when going through code looking for something, so it is good if we can
-speed that up as much as possible by helping things be clear.
+speed that up as much as possible by helping things not require unneeded context analysis. I would say make things clear
+but that is too woolly, what is clear after 2 hours is very different from after 10 hours due to tiredness.
 
+You can also add breakpoints easily on the extracted value, dump them out with println easily, etc.
+
+### Inline Variable (Ctrl-Alt-N)
+<https://refactoring.guru/inline-temp>
+
+This is the inverse of **Extract Variable**.
+
+You have done an extract variable as you want to println the value or something, now you want to inline it again.
+
+#### Before 
+![inline-variable-before.png](images/intellij/inline-variable-before.png)
+
+#### After 
+![img.png](images/intellij/inline-variable-after.png)
+
+Then I will do delete line on the println. I map this to **ctrl-shift-z** for easy one-handed operation else default is 
+**Cmd-Backspace** or **Ctrl-y**
 
 ### Alt+F7 Find usages
 This will find all the usages of something by type (method/class etc.). In the results pane, there is an eye symbol that allows changing of 
@@ -162,7 +207,7 @@ previous file will be first selected.
 ### Cmd-O (ctrl-N) Navigate to class/trait etc.
 ![navigate-class.png](images/intellij/navigate-class.png)
 
-This command greedy matches as well so doing things like just the letters of each word will match. It matches better than
+This **command** greedy matches as well so doing things like just the letters of each word will match. It matches better than
 I can type. Pressing the shortcut again will include non-project classes (libraries/java lib etc).
 
 
