@@ -1,7 +1,18 @@
-## IntelliJCheatSheet
+# IntelliJCheatSheet
 
 I personally add CTRL mappings as well to the CMD ones on Mac otherwise all my muscle memory gets destroyed for Linux/Windows.
 Ctrl is also easier to hit on a normal keyboard (ctrl-shift versus cmd-shift, ctrl-z etc).
+
+Typing does not equal doing, but can feel good, we can feel effective when we are not. Being effective comes from 
+self-analysis and good feedback from trusted sources. Not from Jira ticket completion. A mess can be hidden behind
+each closed Jira ticket.
+
+Typing but not achieving anything.
+
+![fran-black-books-typing.webp](images%2Ffran-black-books-typing.webp)
+
+Fran from Black Books, no clue what she has to do as she was never told, just looking busy.
+
 
 ## Keymaps
 Keymaps can be found here
@@ -97,6 +108,36 @@ I use this to open the project pain. For example, I will open a file in the loca
 use the keyboard shortcut (CMD-N or Alt-Insert)
 
 ![img.png](images/intellij/show-file-location.png)
+
+### Ctrl-Shift-F1 New in this directory (Custom binding)
+Create file in the directory of the file you are working with. I had forgotten about this.
+
+
+### F5 Copy the current file and give it a new name
+This allows the copy of a class to be used as a template then gutted easily. Using too much of this could be symptomatic
+of a need to refactor commonality. Maybe a common base class for things like tests as you can generate the test and select
+the base class. Refactoring and bunging things into traits is much less ideal, inheritance is still inheritance, and now
+things start to get a lot more murky as things can start to get a lot more complicated over time.
+
+Inheritance takes a while to show its true ugliness. It is highly opportunistic in design and promotes further opportunistic
+design. 
+
+The **Tease apart inheritance** refactoring is quite advanced. It can take some people hours, other people days. This leads
+to an unneeded high-skill barrier in the project to clean it up.
+
+Scala doesn't really rely on inheritance in a classical sense. Heavy parent objects are frowned upon, but they tend to appear
+in tests with the habit of binding in traits to inject a lot of things into the vertical scope, breaking the ability
+to mentally collate what is in scope. I will talk about organizing tests in detail elsewhere. Writing a test should be 
+as fast and fluid as writing the code when you have little knowledge of either. If you have to keep opening files when
+writing tests as the benefit of autocomplete has been depleted, then tests have started to become a boat anchor lowering
+velocity.
+
+Well-designed apis don't involve having to open the source code to use them. Plus, having to look at more things can lead to 
+being mentally side-tracked from spotting things and adding more things to the todo list which gets very tiring.
+
+The point of this document is to get people to a level where they can do the more advanced workflows with a speed that
+won't get complaints/pressure. We often fight the pressure to do a bad job to do things fast, so the requirement is
+to become fast enough you have room and have confidence to push back when needed.
 
 ### Shift-F6 Rename
 I probably use this multiple times on everything. Naming is hard :)
@@ -220,13 +261,19 @@ Similar to navigate to class, but a lot more eye noise.
 ![navigate-all.png](images/intellij/navigate-all.png)
 
 I just use this shortcut for methods/symbols as it is CMD-SHIFT-ALT-O is a bit too contortionist. You could use this keyboard
-shortcut instead of the more refined ones but you may give yourself a headache without realising why. I give myself
+shortcut instead of the more refined ones, but you may give yourself a headache without realizing why. I give myself
 lots of headaches, the potential of headaches gives me headaches.
-
 
 ### Open Recent Project (CMD-Shift-A Open Recent)
 Lists the recent projects you had open which allows you to re-open them quickly.
 
+
+### Extend selection/Deselect selection Cmd-up/Cmd-down (ctrl-w/ctrl-shift-w)
+I add the Windows/Linux shortcuts to the Mac as they are one-handed and I use them a lot. Plus, I end up hitting Cmd-R
+as using Cmd and Ctrl can feel like a 50-50 mix up in the OSX keymap and I end up closing the file when I hit Cmd-w as 
+Ctrl-w did not work.
+
+50-50 mixup is a fighting game term when luck versus skill is involved, it is not regarded as good design. 
 
 ## Running tests/Run actions
 I am a fan of only running the test/tests I am focussing on. The reasons for this is tests can and often bleed into other tests.
