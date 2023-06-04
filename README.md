@@ -9,6 +9,7 @@ All things have tests/examples showing usage.
 
 * [Intellij Cheat Sheet](IntelliJCheatSheet.html) - How to use Intellij effectively minimizing the use of a mouse etc. 
 * [Intellij Cheat Live Templates](IntelliJCheatSheet-LiveTemplates.html) - How to cut down on that clown hand feeling and long term RSI.
+* [Code Structure - Ordering](CodeStructure-Ordering.html) - Reducing cognitive load by the ordering of code
 * [Scala Sbt Lib Resolver Cli](ScalaSbtLibResolverCli.html) - ZIO 2 native command line project
   using STTP that enables sbt entry generation for libs/plugins/compiler plugins.
 * [zio2playground](Zio2Playground.html) - ZIO 2 project exampling logging and http with telemetry (B3), shared test
