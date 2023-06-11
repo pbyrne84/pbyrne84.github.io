@@ -66,9 +66,10 @@ fidelity easily. Higher easy fidelity, less long term headaches. I moved to Scal
 functional purity due to how it allows test structuring. Tests are also communication, not just things that give us dopamine
 when we get a green result.
 
-## All programming languages are not equal (unless you are really being glib about it to get the oxytocin going at a conference)
+## All programming languages are not equal, they come with different headaches
 This is where I can appear contentious, and it can appear like a language war. What I promote is listening to your biology.
-Noting what makes you feel tired and confused early as those things will likely just make you more tired.
+Noting what makes you feel tired and confused early as those things will likely just make you more tired. When we get
+tired, it can negatively affect our interpersonal relations, so it is good to manage this.
 
 Another mental exercise I used to do when starting out until things became second nature.
 
@@ -77,11 +78,12 @@ You have a project of X size, what would become problematic when it reaches 10x 
 ```
 
 Our thought processes have a cost to us, thinking about one thing blocks another thing, getting tired can both cause 
-and miss mistakes from code blindness. Trying to run this mental simulation can help magnify the current twinges to the
-point where re-organisation can be done early, the longer things are left, the harder it is.
+and also miss existing mistakes from code blindness. Trying to run this mental simulation can help magnify the current twinges to the
+point where re-organisation can be done early, the longer things are left, the harder it is. Left long enough, the 
+skill gap can be too high for a lot of people to be able to do the re-organisation.
 
 All languages are not equal as they allow different concepts, concepts are what helps us communicate at speed. A pure 
-function can elate when we say or hear **pure** but really a **pure** function communicates it can be trusted. ADT's
+function can elate when we say or hear the word **pure** but really a **pure** function communicates it can be trusted. ADT's
 are a better version of <https://refactoring.guru/replace-type-code-with-subclasses>, also what attracted me to Scala.
 
 Working on your own, these things are not as important as you can work from your own memory and memorization is less of a
@@ -90,6 +92,98 @@ are more or less equal if we all became a hive mind.
 
 
 ## Better practices are learnt from dealing with code that is not aging well
+We like to experience things first hand. Dealing with code that is not aging well is a good experience, it allows the 
+experience of the negative outcome without the effort needed to create the negative outcome. Usually, this takes a while,
+so we may never see the negative outcomes of our approaches, and keep repeating those approaches to the negative benefit 
+of those who come after. Dealing with mud helps us not to create more mud. This is why it is important never to get into
+a panel beating state of mind. Always question, taking into account easy can become a lot harder at scale. 
+
+Ask yourself
+"If I could change anything, what would I change to help me and my team go consistently faster?"
+
+Once you know what you would like to do, if applicable, then you can start to work out how.
+
+
+## Vertical ordering of code
+
+<https://www.baeldung.com/cs/clean-code-formatting> (All of this in detail)
+
+This comes from Clean Code by Robert C Martin. I call it "How to organise code, so you don't feel like a cat chasing a
+laser pointer". This is my **number one approach to help reduce cognitive load and sore neck**. 
+
+There is a pattern called composed method. You actually have seen it many times as like most patterns, it is naturally 
+evolving, so we do it without knowing. It is based on breaking something down using private methods, so we have a concept
+of overview and implementation. With Scala, doing this can help with type signatures as **EitherT** can be a bit picky
+about compatibility with signatures.
+
+
+### Done well, we can read vertically
+
+```scala
+def add(element:Any): Either[Throwable,true] = {
+  //Overview, private methods are detail. We should be able to work out if this is the thing we want from this method
+  //If not we can skim past validate and grow
+ for{
+  _ <- validate(element)
+  result <- grow(element)
+ } yield result
+}
+
+// Content of these is just under so they can be read using normal vertical reading/referencing. Control click to navigate is not
+// really needed, PR's are easier as we have reduced chaotic scrolling.
+
+//Called first, so goes first
+private def validate(element:Any) : Either[Throwable,true] = {
+ ???
+}
+
+//Called second, so goes second
+private def grow(element:Any) : Either[Throwable,true] = {
+ ???
+}
+
+```
+
+### Done chaotically, our neck will hurt over time, we will become more tired.
+
+Eyes have to move all over the place to work out what is happening. **validate** just seems to float on its own meaning
+you have to skim past and then maybe revisit. Cat and laser pointer.
+
+```scala
+private def validate(element:Any) : Either[Throwable,true] = {
+ ???
+}
+
+def add(element:Any): Either[Throwable,true] = {
+ for{
+  _ <- validate(element)
+  result <- grow(element)
+ } yield result
+}
+
+// Content of these is just under so they can be read using normal vertical reading/referencing. Control click to navigate is not
+// really needed, PR's are easier as we have reduced chaotic scrolling.
+
+//Called second, so goes second
+private def grow(element:Any) : Either[Throwable,true] = {
+ ???
+}
+```
+
+### Using this approach aids refactoring
+
+As the private methods are kept close and within range of each other, a lot of extract class refactorings become a lot 
+easier. The first thing I do before any refactoring is re-organise to make things easier, things like to hide in the
+chaos, those things can block any refactoring.
+
+
+
+
+
+
+
+
+
 
 
 
