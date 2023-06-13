@@ -145,10 +145,10 @@ I probably use this multiple times on everything. Naming is hard :)
 ![rename.png](images/intellij/rename.png)
 
 Sometimes it will do it inline though sometimes it will offer a modal. Rename a base class and Intellij will offer renaming of 
-any children etc.
+any children, etc.
 
 #### Really cool rename usage that saves typing (and spelling issues)
-If you choose to rename a variable then it will give you options based on type
+If you choose to rename a variable, then it will give you options based on type
 
 ![img.png](images/intellij/impress-your-friends-with-rename.png)
 
