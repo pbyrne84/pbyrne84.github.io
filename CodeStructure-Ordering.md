@@ -1,7 +1,7 @@
 # Code Structure - Ordering for skimmability and easier PR processing
 
 A lot of my ethos is built around trying to apply **Steve Krug's - Don't Make Me Think** to programming. We are the 
-end users of each other's code, we can only expect to receive what we leave for others. What you do with easily in the
+end users of each other's code, we can only expect to receive what we leave for others. What you do easily in the
 morning can be a migraine for someone else in the evening. How we write software leaves a User Experience for the next
 person, so we should take care of what causes unneeded thinking. The need for thinking may as well be actually endless 
 on the timescales we live due to all the possibilities in the universe.
@@ -23,9 +23,9 @@ I use this instead of the **coding for violent psychopaths** technique
 
 <https://blog.codinghorror.com/coding-for-violent-psychopaths/>
 
-I think that one makes anxious people more anxious, which is not good. Possibly inhibit people with imposter syndrome
+I think that one makes anxious people more anxious, which is not good. Possibly it can inhibit people with imposter syndrome
 further. I do quite like it, but I also don't fear the psychopath. They are maligned, no sense of culpability does not
-equal them having to do harm to others.
+equal them having to do harm to others. Culpability can also rely on experience.
 
 I do the mental exercise of 
 
@@ -47,7 +47,7 @@ is supposed to help, everyone just fixates on the technical aspects such as scal
 fence-rot. 
 
 Rot is perceived differently by different people, but monoliths have the problem of having much higher different types of
-complexity due to depth of the system. Lack of experience leads to a lot of **accidental complexities** 
+complexity due to the depth of the system. Lack of experience leads to a lot of **accidental complexities** 
 <https://medium.com/background-thread/accidental-and-essential-complexity-programming-word-of-the-day-b4db4d2600d4>, trying
 to clean that up in a service with a lot of engineers can become like climbing the north face of the Eiger. Microservices
 keep things bite size, so there are hard boundaries things cannot bleed through.
@@ -94,7 +94,7 @@ are more or less equal if we all became a hive mind.
 ## Better practices are learnt from dealing with code that is not aging well
 We like to experience things first hand. Dealing with code that is not aging well is a good experience, it allows the 
 experience of the negative outcome without the effort needed to create the negative outcome. Usually, this takes a while,
-so we may never see the negative outcomes of our approaches, and keep repeating those approaches to the negative benefit 
+so we may never see the negative outcomes of our approaches, and we keep repeating those approaches to the negative benefit 
 of those who come after. Dealing with mud helps us not to create more mud. This is why it is important never to get into
 a panel beating state of mind. Always question, taking into account easy can become a lot harder at scale. 
 
@@ -116,6 +116,10 @@ evolving, so we do it without knowing. It is based on breaking something down us
 of overview and implementation. With Scala, doing this can help with type signatures as **EitherT** can be a bit picky
 about compatibility with signatures.
 
+The premise is that there should be an overview method (commonly public) that calls well-named private methods, so we 
+can tell the business logic before deep implementation logic. If the business logic is not what concerns us, we do 
+not have to look at the implementation logic. We can discard the irrelevant path we are on easily.
+
 
 ### Done well, we can read vertically
 
@@ -133,12 +137,12 @@ def add(element:Any): Either[Throwable,true] = {
 // really needed, PR's are easier as we have reduced chaotic scrolling.
 
 //Called first, so goes first
-private def validate(element:Any) : Either[Throwable,true] = {
+private def validate(element:Any): Either[Throwable,true] = {
  ???
 }
 
 //Called second, so goes second
-private def grow(element:Any) : Either[Throwable,true] = {
+private def grow(element:Any): Either[Throwable,true] = {
  ???
 }
 
@@ -150,6 +154,8 @@ Eyes have to move all over the place to work out what is happening. **validate**
 you have to skim past and then maybe revisit. Cat and laser pointer.
 
 ```scala
+
+// Above add method so we are going to have to bounce back up to read
 private def validate(element:Any) : Either[Throwable,true] = {
  ???
 }
@@ -161,10 +167,7 @@ def add(element:Any): Either[Throwable,true] = {
  } yield result
 }
 
-// Content of these is just under so they can be read using normal vertical reading/referencing. Control click to navigate is not
-// really needed, PR's are easier as we have reduced chaotic scrolling.
 
-//Called second, so goes second
 private def grow(element:Any) : Either[Throwable,true] = {
  ???
 }
@@ -177,14 +180,59 @@ easier. The first thing I do before any refactoring is re-organise to make thing
 chaos, those things can block any refactoring.
 
 
+### Ordering of methods can communicate other things
+What is rarely taken into account is that there is a skill barrier to cleaning up our mess, when pushed for time 
+we then leave more mess. The unfortunate fact is the more experienced you become, the more problems that can be perceived
+and things like formatting and code ordering help the mess be clear. A mess has to be made clear to be cleaned up.
+
+The skill barrier for cleaning up a mess comes from not cleaning up messes. There is a concept called refactoring in 
+functionality, for that any one of these refactorings can be used <https://refactoring.guru/refactoring/catalog> without 
+permission as they are not re-engineering, time you take to help me save time helps me take time saving other people time.
+I will do a refactoring thing later but feature envy is one major cause of mess <https://refactoring.guru/smells/feature-envy>.
 
 
+#### Example of using ordering to communicate
 
 
+```scala
+// There is a triangle shape in calls that can be used to visually model
+//
+//  call1
+//        childAction1
+//        childAction2
+//  call2
+class Example {
+  
+  def call1() ={
+    for{
+      _ <- childAction1()
+      _ <- childAction2()
+    } yield ()
+  }
+  
+  // childAction1 and childAction2 are closely related, shared by call1 and call2
+  // childAction1 and childAction2 may be able to be extracted to their own class that can be tested
+  // (are a separate responsibility requiring a bulk of dependencies),
+  // especially if they have all the meat of the action as it makes testing it easier. Don't test private methods or make private
+  // methods public for testing as it hinders refactoring (things can get very complicated).
+  //
+  // Ordered like this, just cut the methods out into a new class and add dependencies to the constructor until it stops
+  // complaining.
+  private def childAction1(): Option[Boolean] = {
+    ???
+  }
 
+  private def childAction2(): Option[Boolean] = {
+    ???
+  }
 
+  def call2() = {
+    for {
+      _ <- childAction1() // childAction1 is above so is a shared concept
+      _ <- childAction2() // childAction2 is above so is a shared concept
+    } yield ()
+  }
 
+}
 
-
-
-
+```
