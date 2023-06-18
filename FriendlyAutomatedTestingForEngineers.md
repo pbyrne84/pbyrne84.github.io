@@ -8,10 +8,14 @@ Tests are there to help us relieve mental pressure, not add to it.
 
 Once we can no longer reason about a system, then we can no longer estimate within the system.
 
+### Allow simulation of a production problem easily
+You think there is a problem along boundary y, being able to prove or disprove your belief easily is a game changer. This
+should feel like a calm experience. If something gives you a headache, then possibly the approach is wrong.
+
 ### Communication for what you have reasoned about and also deemed non-important
 When building systems, correctness is not a boolean. Tests are there for you to communicate what is correct enough and
 why. This is why in the tests the messages should always be why you expect things. If something is going to appear 
-anomolous, such as it being weird business rules, then the reasons for the weirdness can be communicated in the test.
+anomalous, such as it being weird business rules, then the reasons for the weirdness can be communicated in the test.
 
 Whatever level of experience I have, you should not blindly trust me, and I should not blindly trust you. We all have bad days,
  tests allow us to have bad days.
@@ -28,11 +32,12 @@ in the database is no-where near communicative enough (what are the rules for al
 
 Tests are a cost, they are there to help with our velocity. We need to keep track of how they holistically create a negative 
 experience, for example, mocking all the lower dependencies, so everyone now has to manually debug the app when they inherit
-it to actually work out what is really happening. That adds up to a real time sync, and if there are any things that are not
+it to actually work out what is really happening. That adds up to a real time sink, and if there are any things that are not
 locked down by signatures like thrown exceptions which are recovered later, good luck proving that works. Though I would say
 in Scala just use tightened errors with **Either**, it is in the signature and errors are what make our live unhappy.
 
-An Exception is just a minor ratio of an outcome. Nothing special. If it involves networking, it will go wrong at some point.
+An Exception is just a minor ratio of an outcome. Nothing special. If it involves networking, it will go wrong at some point,
+in production where you cannot see what it is doing.
 
 
 ### Failure should be clear
@@ -40,7 +45,7 @@ Code should not have to change/debuggers be used to work out what failed. It was
 Possibly enough unneeded stress that people leave the industry. Sucks the fun out as it shows a lack of care. Though this
 is a care that has to be learnt.
 
-If tests are written before code, it can help realise that the messaging is not clear as failure is much more likely to 
+If tests are written before code, it can help surface that the messaging is not clear as failure is much more likely to 
 be experienced.
 
 
