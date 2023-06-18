@@ -26,6 +26,7 @@ Whatever level of experience I have, you should not blindly trust me, and I shou
 Manually hitting through a system from the top to try and understand it is error-prone and also tiring. I start thinking
 of automation quite early as I lose attention on repetitious tasks. A well-designed test hierarchy allows easy experimentation
 within a system to work out what happens when X happens. This means there needs to be tests that do go through the whole system.
+
 Some people would take that to the extreme and just have end-to-end tests, but those tests end up having a high cost to own and 
 maintain as they are non-communicative and meandering. It ties into correctness, I pass the thingy in, and the thingy ends up
 in the database is no-where near communicative enough (what are the rules for all the boundaries and error cases?).
@@ -37,8 +38,7 @@ locked down by signatures like thrown exceptions which are recovered later, good
 in Scala just use tightened errors with **Either**, it is in the signature and errors are what make our live unhappy.
 
 An Exception is just a minor ratio of an outcome. Nothing special. If it involves networking, it will go wrong at some point,
-in production where you cannot see what it is doing.
-
+in production where you cannot see what it is doing so add that logging so you can reproduce locally.
 
 ### Failure should be clear
 We only really notice tests when we have to need to change them or when they fail. Tests can be fragile <https://www.everydayunittesting.com/2022/05/the-truth-about-fragile-tests.html>, our hubris can infect tests like it can infect our code. It is 
