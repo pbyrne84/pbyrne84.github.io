@@ -344,8 +344,9 @@ Good luck with that one (have to remap order and diff option broken). There is m
 UUID's and timestamps are always fun to work with. 
 
 I would paraphrase Eleven from Stranger Things on this
-"Friends don't leave friends theSameElementsAs failures"
-=
+
+"Friends don't leave friends these types of failure messages."
+
 #### A nicer example that removes the headache
 
 ```scala
