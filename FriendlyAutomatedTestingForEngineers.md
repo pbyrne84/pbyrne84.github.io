@@ -41,9 +41,12 @@ in production where you cannot see what it is doing.
 
 
 ### Failure should be clear
+We only really notice tests when we have to need to change them or when they fail. Tests can be fragile <https://www.everydayunittesting.com/2022/05/the-truth-about-fragile-tests.html>, our hubris can infect tests like it can infect our code. It is 
+nice when we have a clear failure, we can focus on the issue causing the failure.
+
 Code should not have to change/debuggers be used to work out what failed. It wastes a lot of time and causes a **LOT** of stress.
 Possibly enough unneeded stress that people leave the industry. Sucks the fun out as it shows a lack of care. Though this
-is a care that has to be learnt.
+is a care that has to be learnt like a lot of socialized behaviour.
 
 If tests are written before code, it can help surface that the messaging is not clear as failure is much more likely to 
 be experienced.
