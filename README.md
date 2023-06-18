@@ -10,6 +10,7 @@ All things have tests/examples showing usage.
 * [Intellij Cheat Sheet](IntelliJCheatSheet.html) - How to use Intellij effectively minimizing the use of a mouse etc. 
 * [Intellij Cheat Live Templates](IntelliJCheatSheet-LiveTemplates.html) - How to cut down on that clown hand feeling and long term RSI.
 * [Code Structure - Ordering](CodeStructure-Ordering.html) - Reducing cognitive load by the ordering of code
+* [Friendly automated testing for engineers](FriendlyAutomatedTestingForEngineers.html) - Trying to make failure fun, or at least not a building cluster headache
 * [Case Class Pretty Rendering](CaseClassPrettyRendering.html) - This is useful for showing diffs in scalatest as it
     renders better.
 * [Scala WireMock Api](https://github.com/pbyrne84/scala-wiremock-api) - A wiremock api using simple case classes to normalize api across Expectation and Verification. Allows better testing by being easier.
