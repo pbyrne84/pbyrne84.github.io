@@ -13,6 +13,7 @@ All things have tests/examples showing usage.
 * [Friendly automated testing for engineers](FriendlyAutomatedTestingForEngineers.html) - Trying to make failure fun, or at least not a building cluster headache
 * [Case Class Pretty Rendering](CaseClassPrettyRendering.html) - This is useful for showing diffs in scalatest as it
     renders better.
+* [Git Rebasing](GitRebasing.html)- How to create a coherent commit history
 * [Scala WireMock Api](https://github.com/pbyrne84/scala-wiremock-api) - A wiremock api using simple case classes to normalize api across Expectation and Verification. Allows better testing by being easier.
 * [Scala Sbt Lib Resolver Cli](ScalaSbtLibResolverCli.html) - ZIO 2 native command line project
   using STTP that enables sbt entry generation for libs/plugins/compiler plugins.

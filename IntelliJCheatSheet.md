@@ -228,10 +228,10 @@ ordering of methods (linear in call order) it also helps with giving an overview
 
 A lot of stuff happening, too much indentation/levels of operation.
 
-![extract-method-before.png](extract-method-before.png)
+![extract-method-before.png](images/intellij/extract-method-before.png)
 
 After extraction (convertMatchToNettyResponse)
-![img.png](extract-method-after.png)
+![img.png](images/intellij/extract-method-after.png)
 
 If you do not care about the logic of the response conversion, it is very easy to skim over. Being able to skim things
 safely is important. If we can't, then it becomes very tiring to verify behaviour. 
