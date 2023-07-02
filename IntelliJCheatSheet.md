@@ -18,6 +18,10 @@ Fran from Black Books, no clue what she has to do as she was never told, just lo
 Keymaps can be found here
 <https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf>
 
+<https://www.jetbrains.com/help/idea/reference-keymap-mac-default.html>
+
+<https://www.jetbrains.com/help/idea/reference-keymap-win-default.html>
+
 Or simply open Cmd-Shift-A "keyboard" and you should see "Keyboard Shortcuts PDF" in the list of options.
 On Mac's things can get a bit random so some things may be like Linux/Windows. Historically, this is how things were, but
 people asked for keymaps to be OSX centric when coming to WebStorm etc. so there was a divergence.
@@ -197,10 +201,12 @@ but that is too woolly, what is clear after 2 hours is very different from after
 
 You can also add breakpoints easily on the extracted value, dump them out with println easily, etc.
 
-### Inline Variable (Ctrl-Alt-N)
+### Inline (Ctrl-Alt-N)
 <https://refactoring.guru/inline-temp>
 
-This is the inverse of **Extract Variable**.
+<https://refactoring.guru/inline-method>
+
+This is the inverse of **Extract Variable**/**Extract Method**.
 
 You have done an extract variable as you want to println the value or something, now you want to inline it again.
 
@@ -212,6 +218,35 @@ You have done an extract variable as you want to println the value or something,
 
 Then I will do delete line on the println. I map this to **ctrl-shift-z** for easy one-handed operation else default is 
 **Cmd-Backspace** or **Ctrl-y**
+
+
+### Extract method Cmd+Alt+M (Ctrl+Alt+M)
+
+There is too much going on in a method. It is making you feel like you need to be needlessly smart. That is a waste of
+energy that can be used elsewhere. You also know bugs happen because of nuance, and confusion hides nuance. With good
+ordering of methods (linear in call order) it also helps with giving an overview of what a class does.
+
+A lot of stuff happening, too much indentation/levels of operation.
+
+![extract-method-before.png](extract-method-before.png)
+
+After extraction (convertMatchToNettyResponse)
+![img.png](extract-method-after.png)
+
+If you do not care about the logic of the response conversion, it is very easy to skim over. Being able to skim things
+safely is important. If we can't, then it becomes very tiring to verify behaviour. 
+
+Extract method also ties into things
+like dealing with arrow code (<https://blog.codinghorror.com/flattening-arrow-code/>) where it requires getting into 
+someone else's flow state to understand what they did. Usually I operate on a similar rule set where if I hit 3 levels 
+of indentation, I will think of extracting things out as I start giving myself a headache at that point and links to
+a common practice of [CodeStructure-Ordering.md](CodeStructure-Ordering.md) to aid speed and effort of comprehension.
+
+Also with **Scala** and monads extracting methods helps to keep signatures under control. Having a complicated body and
+ending up with **F[Any]** is hard to deal with. Usually I extract things out as if I find things hard other people will
+find it hard. **Scala** gets accused of being a complicated language, though this can be helped a lot with better writing
+style. Anything can be made needlessly complicated if the only thing people care about is getting that closed Jira
+ticket dopamine rush.
 
 ### Alt+F7 Find usages
 This will find all the usages of something by type (method/class etc.). In the results pane, there is an eye symbol that allows changing of 
