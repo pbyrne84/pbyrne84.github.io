@@ -48,9 +48,9 @@ to interactive mode by pressing **i**. I forget this quite a lot and trigger int
 in it.
 
 When in interactive mode we need to press Escape to get out to do things like the following
-* Save and quit - :wq
-* Just quit - :q
-
+* Save and quit - **:wq** and then **Enter**
+* Just quit - **:q** and then **Enter**
+ 
 (: and then q) etc.
 
 There are jokes about quitting out of VIM <https://thenewstack.io/how-do-you-exit-vim-a-newbie-question-turned-tech-meme/>
@@ -83,7 +83,7 @@ Often I will just use **f** on everything but the first commit and then all chan
 
 Then press **Escape**
 
-and type **:wq** 
+and type **:wq** and then **Enter**
 
 ![vim-save-quit-wq.png](images/vim-save-quit-wq.png)
 
