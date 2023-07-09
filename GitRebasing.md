@@ -65,7 +65,7 @@ git rebase -i origin/main
 
 And it has opened VI (Oh Noes :))
 
-![interactive-rebase-start.png](images/interactive-rebase-start.png)
+![interactive-rebase-start.png](images/rebasing/interactive-rebase-start.png)
 
 We then switch to interactive mode with the **i** key.
 
@@ -74,8 +74,8 @@ following.
 
 * p - keep/pick
 * r - rewrite message
-* f - just squish down with no reference in commit message
-* s - squash with reference in commit message
+* f - fixup - just squish down with no reference in commit message
+* s - squash - with reference in commit message
 
 Often I will just use **f** on everything but the first commit and then all changes are just put under that commit.
 
@@ -95,4 +95,53 @@ push -f
 
 **Again don't do this on a shared branch**
 
+### More complicated example with rewrite messages
 
+(Usually I will just squash everything but first commit and then use **r** in a separate rebase to change the message as I am clumsy )
+
+**Commit and push changes first, if there is a problem then you can reset with**
+```bash
+git reset --hard origin/branch-name
+```
+
+We have 4 commits on a branch. 
+```bash
+git graph
+```
+
+![git-rebase-step1.png](images/rebasing/git-rebase-step1.png)
+
+We start an interactive rebase again origin/main
+```bash
+git rebase -i origin/main
+```
+
+![git-rebase-step1.png](images/rebasing/git-rebase-step2.png)
+
+We press **i** to edit. We want to rewrite the message, keep the 3rd commit message by squashing. The 2nd and 4th references will be squashed down.
+
+
+**You cannot change messages in this view** 
+
+![git-rebase-step3 .png](images/rebasing/git-rebase-step3.png)
+
+Press escape and then **:wq**
+
+![git-rebase-step4.png](images/rebasing/git-rebase-step4.png)
+
+Now you can edit things by pressing **i** again (in non-interactive mode **dd** deletes a line)
+
+![git-rebase-step4.png](images/rebasing/git-rebase-step5.png)
+
+**Escape and :wq again will take you to**
+
+![git-rebase-step6.png](images/rebasing/git-rebase-step6.png)
+
+Force push
+```bash
+push -f
+```
+
+which will look like this in a pull request (bad spelling included)
+
+![git-rebase-step7.png](images/rebasing/git-rebase-step7.png)
