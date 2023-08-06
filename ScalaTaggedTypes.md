@@ -150,7 +150,7 @@ object tag {
 
 Manual tagging in Scala2 without a library and opaque types in Scala3.
 
-```scala 3
+```scala
 package io.github.pbyrne84.taggedtypes
 
 import org.scalatest.matchers.must.Matchers
