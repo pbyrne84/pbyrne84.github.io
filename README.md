@@ -14,6 +14,7 @@ All things have tests/examples showing usage.
 * [Case Class Pretty Rendering](CaseClassPrettyRendering.html) - This is useful for showing diffs in scalatest as it
     renders better.
 * [Git Rebasing](GitRebasing.html)- How to create a coherent commit history
+* [Scala Tagged/Opaque Types](ScalaTaggedTypes.md) - How to add data stringency and the benefits, especially in distributed systems.
 * [Scala WireMock Api](https://github.com/pbyrne84/scala-wiremock-api) - A wiremock api using simple case classes to normalize api across Expectation and Verification. Allows better testing by being easier.
 * [Scala Sbt Lib Resolver Cli](ScalaSbtLibResolverCli.html) - ZIO 2 native command line project
   using STTP that enables sbt entry generation for libs/plugins/compiler plugins.

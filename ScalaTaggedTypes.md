@@ -1,8 +1,16 @@
 # Scala Tagged Types/Opaque Types
+Data stringency is something that is often overlooked due to the effort it takes in most languages. Scala makes this very 
+easy. The happy paths of 2 systems developed by 2 teams may be the same, the unhappy paths which affect the cost of ownership
+may be very different. If engineers appear negative, that is because they have to take into account negative paths, and usually
+there are more negative paths than positive ones.
+
+Making unhappiness clear aids in maintaining a sense of happiness. From a human perspective, the mental effort to work something
+out can impact far longer than the time it takes. Businesses think in terms of time as that is what they pay for, there is 
+no way to collate the further time lost when trying to context switch back to something else. Not all distractions are 
+equal even though they may have the same duration.
 
 ## Tagged types and Opaque Types are the same concept
 Scala 2 had manual implementation, in Scala 3 it is built in but uses the term opaque types.
-
 
 ## What are they and what are they for?
 
@@ -138,6 +146,7 @@ object tag {
 ```
 
 ## Example of usage
+<https://github.com/pbyrne84/pbyrne84.github.io/blob/main/src/test/scala/io/github/pbyrne84/taggedtypes/TaggedTypesSpec.scala>
 
 Manual tagging in Scala2 without a library and opaque types in Scala3.
 
