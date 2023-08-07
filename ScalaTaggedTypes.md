@@ -1,14 +1,37 @@
 # Scala Tagged Types/Opaque Types
 Data stringency is something that is often overlooked due to the effort it takes in most languages. Scala makes this very 
 easy. The happy paths of 2 systems developed by 2 teams may be the same, the unhappy paths which affect the cost of ownership
-may be very different. If engineers appear negative, that is because they have to take into account negative paths, and usually
-there are more negative paths than positive ones.
+will be very different as people are generally happy focussed. If engineers appear negative, that is because they have to 
+take into account negative paths, and usually there are more negative paths than positive ones.
 
 Making unhappiness clear aids in maintaining a sense of happiness. From a human perspective, the mental effort to work something
 out can impact far longer than the time it takes. Businesses think in terms of time as that is what they pay for, there is 
 no way to collate the further time lost when trying to context switch back to something else. Not all distractions are 
 equal even though they may have the same duration.
 
+Data stringency ties into <https://en.wikipedia.org/wiki/Defensive_programming>.
+It also ties into a fail fast philosophy <https://en.wikipedia.org/wiki/Fail-fast>.
+I tend to prefer a fail in a clear fashion philosophy, failing clearly usually is fail fast, but we are informative 
+what caused the failure. In one of the defensive programming WIKI page offensive examples it fails, but gives no indication
+of what value caused the problem.
+
+```
+const char* trafficlight_colorname(enum traffic_light_color c) {
+    switch (c) {
+        case TRAFFICLIGHT_RED:    return "red";
+        case TRAFFICLIGHT_YELLOW: return "yellow";
+        case TRAFFICLIGHT_GREEN:  return "green";
+    }
+    assert(0); // Assert that this section is unreachable.
+    // Warning: This 'assert' function call will be dropped by an optimizing
+    // compiler if all possible values of 'traffic_light_color' are listed in
+    // the previous 'switch' statement...
+}
+```
+**assert(0)** will halt on a problem, but we have no clue what the value of **c** was that caused the issue. In an ideal
+world we would have some logging and on the **assert** to fail with an informative error containing value of **c** in it,
+if the assert statement allows it.
+ 
 ## Tagged types and Opaque Types are the same concept
 Scala 2 had manual implementation, in Scala 3 it is built in but uses the term opaque types.
 
