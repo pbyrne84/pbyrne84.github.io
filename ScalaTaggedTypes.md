@@ -1,4 +1,18 @@
 # Scala Tagged Types/Opaque Types
+
+An example of how we can tie this into an Akka Http API, this allows us to get informative API errors can be found in 
+[ScalaCirceErrorHandling.html](ScalaCirceErrorHandling.html). This allows us to move some validation to the api entrance
+stopping us needing to worry about it later.
+
+When we are building distributed automated systems managed by many teams, we will face the situation of systems calling
+us that behave badly and also systems we call behaving badly. Often the owners of those systems will have no idea, and 
+we will need to reach out to them to inform them of what is happening. It is good if we have good quality information
+when we reach out, such as having all invalid values as this allows them to fix everything in one go with minimal meetings. Ideally
+no meetings. Building systems that require minimal meetings and cross-team chatter :)
+
+Less meetings, more development.
+
+## Data Stringency
 Data stringency is something that is often overlooked due to the effort it takes in most languages. Scala makes this very 
 easy. The happy paths of 2 systems developed by 2 teams may be the same, the unhappy paths which affect the cost of ownership
 will be very different as people are generally happy focussed. If engineers appear negative, that is because they have to 
@@ -10,10 +24,12 @@ no way to collate the further time lost when trying to context switch back to so
 equal even though they may have the same duration.
 
 Data stringency ties into <https://en.wikipedia.org/wiki/Defensive_programming>.
-It also ties into a fail fast philosophy <https://en.wikipedia.org/wiki/Fail-fast>.
-I tend to prefer a fail in a clear fashion philosophy, failing clearly usually is fail fast, but we are informative 
-what caused the failure. In one of the defensive programming WIKI page offensive examples it fails, but gives no indication
-of what value caused the problem.
+It also ties into a fail fast philosophy <https://en.wikipedia.org/wiki/Fail-fast> and helps with dealing with primitive
+obsession <https://refactoring.guru/smells/primitive-obsession>.
+
+I tend to prefer a "fail in a clear fashion" philosophy, failing clearly usually is failing fast, but we are informative 
+what caused the failure. In one of the defensive programming WIKI page "offensive programming" examples it fails, but gives 
+no indication of what value caused the problem.
 
 ```
 const char* trafficlight_colorname(enum traffic_light_color c) {
@@ -29,8 +45,10 @@ const char* trafficlight_colorname(enum traffic_light_color c) {
 }
 ```
 **assert(0)** will halt on a problem, but we have no clue what the value of **c** was that caused the issue. In an ideal
-world we would have some logging and on the **assert** to fail with an informative error containing value of **c** in it,
+world we would have some logging and the **assert** would fail with an informative error containing the value of **c** in it,
 if the assert statement allows it.
+
+## Pushing 
  
 ## Tagged types and Opaque Types are the same concept
 Scala 2 had manual implementation, in Scala 3 it is built in but uses the term opaque types.
@@ -45,7 +63,7 @@ using a string type that can contain any unicode value with a length set by mach
 of that value only accepts alphanumeric characters up to 300 chars in length, or it will fail. We could check the value on entrance (say api route) and
 then trust the value in the call chain. 
 
-In the diagram below, there are 3 examples of call chains. 
+In the diagram below, there are three examples of call chains. 
 
 1. The First type of call chain is the most common as we fixate on getting something working versus how it may not work later as 
    things move around. Overly trusting of the caller, if we want to mentally sanity check anything, we have to start travelling up the calls.
@@ -122,23 +140,23 @@ it breaks things like smart complete in IDES which creates more manual typing/br
 
 ## Other benefits of Tagged Types
 Using things like find usages in an IDE, we can find all potential paths that value can go down. This greatly increases the 
-speed we can understand a system. We no longer have to drill down and do a game of follow the string. Find usages of the string
+speed we can understand a system. We no longer have to drill down and do a game of "follow the string". Find usages of the string
 type is very non-productive as there will be thousands.
 
 Smart complete becomes more accurate as no longer do you need to pick through invalid values.
 
 Booleans are fairly horrible in negative outcomes, this is why Intellij always prompts you to use named parameters for them.
 More on why Booleans are problematic <https://www.informit.com/articles/article.aspx?p=1392524>. Having the context tied to 
-the type makes it very hard to pass it to the wrong thing. We could also use something more like an enum, but tagged/opaque types
-are another avenue.
+the type makes it very hard to pass it to the wrong thing. We could also use something more like an enum (e.g. TurnOff, TurnOn), 
+but tagged/opaque types are another avenue.
 
 ## Negatives of TaggedTypes/Opaque types
 
 The type does not exist at runtime. **String with Tag** just becomes **String**. This means we cannot do things like match on 
-it. It behaves much like types behave in things like TypeScript. It is for compile time sanity but disappear post-compilation otherwise 
-they would incur overhead. Though as some technologies have total type erasure a bit here is not such a big deal. 
+it. It behaves much like types behave in things like TypeScript. It is for compile time sanity, but they disappear post-compilation 
+otherwise they would incur overhead. Though as some technologies have total type erasure a bit here is not such a big deal. 
 
-The factory method that creates a tagged type could return a value class instead at some point if heap allocation is not an issue and
+The factory method that creates a tagged type could return a value class instead at some point if heap allocation is not an issue, and
 you want to do things that type erasure blocks.
 
 ## How are Tagged Types made?
@@ -313,7 +331,8 @@ class TaggedTypesSpec extends AnyWordSpec with Matchers {
 
       val stringOrOpaqueCat = for {
         stringCat1 <- OpaqueStringCat("meow")
-        stringCat2 <- "meow".attemptAsCat
+        // This is not used below, just an example of using extension methods as a nicer interface
+        stringCat2 <- "meow".attemptAsCat 
         _ <- onlyAllowCats(stringCat1)
         _ <- onlyAllowAnimals(stringCat1)
         // StringCat is still passable as String
