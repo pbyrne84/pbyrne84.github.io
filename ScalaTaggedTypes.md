@@ -100,7 +100,7 @@ pushed to the cost of ownership of the solution, often on others over time. Buil
 investigating problems. Human cost to own limits the size of a technology estate a team can own. Good practices are built around ownership.
 Ownership does not have to be painful.
 
-On a side track there is also telemetry with OpenTelemetry<https://opentelemetry.io/>, Kamon<https://kamon.io/> which has aspects for play etc. and 
+On a side track there is also telemetry with OpenTelemetry<https://opentelemetry.io/>, Kamon <https://kamon.io/> which has aspects for play etc. and 
 ZIO has trace information on the fibres. This ties into things like ZipKin/Jaeger where things are visibly traced through systems. That is another story
 though. 
 
