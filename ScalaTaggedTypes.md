@@ -100,10 +100,44 @@ pushed to the cost of ownership of the solution, often on others over time. Buil
 investigating problems. Human cost to own limits the size of a technology estate a team can own. Good practices are built around ownership.
 Ownership does not have to be painful.
 
-On a side track there is also telemetry with OpenTelemetry<https://opentelemetry.io/>, Kamon<https://kamon.io/> which has aspects for play etc. and 
+On a side track there is also telemetry with OpenTelemetry<https://opentelemetry.io/>, Kamon <https://kamon.io/> which has aspects for play etc. and 
 ZIO has trace information on the fibres. This ties into things like ZipKin/Jaeger where things are visibly traced through systems. That is another story
 though. 
 
+### Building systems by order of risk from unknowns (bit of a sidetrack)
+
+(This probably needs its own page later)
+Often we will be faced with a task where we are not gods of the domain. We use third party technologies that dictate their own rules and may 
+conflict with the requirements. Likely the technology rules we have to abide by are unknown and hence induce risk to the outcome, we need to
+prove we can actually complete the story, so we start there. In this case, automated testing has a prime use for exploration. 
+
+Integration tests are not necessarily inherently slow, but they can be done in a way that makes them slow, for example, starting and stopping
+a docker image per test. Usually, their main problem is they can be written in a way that makes debugging failures hard if they are too deep. 
+Though this can also be the same issue with too much abstracted mocking. An integration test close to the technology with negligible startup times
+is a major benefit. We do not control it, so we need to prove assumptions as that is where bugs like to live. Trust but verify.
+
+**Thinking integration tests are slow by nature, leads to them being slow as people stop investigating why they are slow**. There have been
+a number of times I have gone to Jenkins and found test times have shot up. This is a killer to productivity. A DB test took 10 minutes,
+I got it down to a couple of seconds as the issue was something to do with the way the scala futures were needlessly blocking each other.
+It is always well worth working out why things are slow as maybe we can change those factors, this includes things like production DB stuff.
+Databases are one area performance can be raised in large magnitudes if we do things in a way the database likes. Another topic.
+
+Personally, I mostly learn all technologies by using a test environment. It allows me to keep record of what I tried, what works and also
+what doesn't work. This ties into tests as documentation. I possibly spend a large amount of time learning something, and it is a good way
+for other people to come and learn off my effort and have an environment they have a basis to try things. Helping each other speed up.
+
+So we know what the desired outcome is, we know what data we have available from things like parameters and storage, we can start building
+tests to see if we can get the desired outcomes for all circumstances, if not we can communicate early and maybe change tact. Quite often 
+things are based on nuance, so we discover things while actually doing.
+
+![building-systems-backwards.png](building-systems-backwards.png)
+
+We can build the service layer first, we use validating types in its signature as it needs to be very clear about its rules, such as max length of a fiekd. 
+We do not want 500 errors needless propagating where they do not need to be. We can then propagate that contract upwards as we build towards 
+the entrance point where we can communicate breakages of that rule clearly. Plus, if we have the rule in the class interface contract with a self-validating Type,
+we do not have to mess around with boundary testing too much. Just boundary test (<https://www.tutorialspoint.com/software_testing_dictionary/boundary_testing.htm>) the type once.
+
+You do boundary test, don't you? ;)
 
 ## Benefits of TaggedTypes over Value Classes.
 
