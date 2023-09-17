@@ -13,7 +13,7 @@ I worked in an environment where no exceptions were thrown as their definition o
 An exception/error communicates that call had a problem but does not have the opinion of how it should be dealt with
 so the error is caught somewhere it can be dealt with, for example, maybe it can be retried on certain error types.
 Though not having the error in the signature means we have to reason about potentially complex call chains. Type signatures
-are supposed to help with that and is one of the things that attracts people to functional programming, less making things
+are supposed to help with that and is one of the things that attracts people to functional programming, less just making things
 happen, more can we reason about what can happen as simply as possible.
 
 You are on a beach in the pacific, it is late evening, the ocean looks beautiful. Do you think "Lets go for a swim" or 
@@ -39,11 +39,9 @@ Sometimes a simple boolean is returned. Again, not informative, not nice to debu
 ### Checked Exceptions
 
 A lot of discussion conflates using typed errors in functional programming with checked exceptions. Checked exceptions
-have the flaw of making the easy path the bad path.
+have the flaw of making the easy path the bad path. Checked exceptions are a nice idea, just too hard work in Java for most.
 
 Here we just eat them in an empty try catch. A common example of what people faced.
-
-Checked exceptions are a nice idea, just too hard work in Java for most.
 
 ```java
 package io.github.pbyrne84.errorhandling;
@@ -279,7 +277,21 @@ ask about whether the company uses version control. Can you imagine turning up o
 ### Robert C Martin - Clean Code
 In the clean code book by Robert C Martin (<https://www.goodreads.com/book/show/25806438-clean-code?from_search=true&from_srp=true&qid=7NgnBntSxs&rank=1>)
 goes into the journey of how checked exceptions were mostly given up on in Java due to the effort. The effort to ideological benefit
-meant people cut corners/just wrapped everything in RuntimeExceptions to get around it.
+meant people cut corners/just wrapped everything in RuntimeExceptions to get around it. 
+
+Also, there is some argument that checked exceptions break the open closed principle as the exception has to be added to 
+each method above where it is thrown until it is caught. Though working with IO there is always going to be errors raised,
+I personally believe having them in a signature helps with reasoning about what can go wrong and communicating the context
+when things go wrong. We can also organise retry strategies based on certain types of errors. 
+
+Doing a catch/recover action multiple levels above on a certain type of exception appearing out of nowhere is quite fragile, 
+we have actually tied ourselves to implementation across multiple levels of call and if we want to prove that handling 
+we have to try and trigger that event. The deeper the call chain, the more difficult setup this may require and with
+that flakiness of the test.
+
+The definition of robust changes when we move out of pure computation and an unsatisfying amount of other
+people's time can be wasted if we do not care more about the unhappy cases. There are some good notes in that chapter 
+of the book about error messages etc.
 
 ### John De Goes - BiFunctor IO
 
