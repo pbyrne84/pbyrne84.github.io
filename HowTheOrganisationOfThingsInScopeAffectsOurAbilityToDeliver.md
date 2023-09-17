@@ -188,10 +188,12 @@ We only don't care about method name uniqueness (resetServer2 can now be resetSe
 Makes naming easier.
 
 Model we now have to maybe remember.
+
 ![cleaner-base-spec.png](images/codeorganisation/cleaner-base-spec.png)
 
 
 Autocomplete can work more intuitively
+
 ![looking-for-a-db-thing.png](images/codeorganisation/looking-for-a-db-thing.png)
 
 If we named the instances well we can just say "Have I anything db related to start from?". No need to open anything.
