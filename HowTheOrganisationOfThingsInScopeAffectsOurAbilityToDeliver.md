@@ -129,7 +129,7 @@ Makes reading the code much harder to follow as people have to open stuff up to 
 My favourite test anti pattern
 <http://xunitpatterns.com/Obscure%20Test.html>
 
-### Organised non flat in a fashion that aids memorisation do to having clean domain branching points
+### Organised non flat in a fashion that aids memorisation due to having clean domain branching points
 
 ```scala
 object BranchedOrganisation {
