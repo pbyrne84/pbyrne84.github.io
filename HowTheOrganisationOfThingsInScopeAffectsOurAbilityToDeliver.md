@@ -196,8 +196,8 @@ Autocomplete can work more intuitively
 
 ![looking-for-a-db-thing.png](images/codeorganisation/looking-for-a-db-thing.png)
 
-If we named the instances well we can just say "Have I anything db related to start from?". No need to open anything.
-We can intuitively start writing the test. Maybe no extra files are needed open. "Yay!" I hear you cheer. Nice to be able
+If we have named the instance fields well, we can just say, "Have I anything db related to start from?". No need to open anything.
+We can intuitively start writing the test. Maybe no extra files are needed to open. "Yay!" I hear you cheer. Nice to be able
 to focus on doing the test easily. I get distracted looking at stuff, I spot less than ideal patterns etc.
 Nice to pretend they do not exist for a while, out of sight out of mind :)
 
