@@ -7,16 +7,17 @@ Why are you having to open an implementation to refer to it?
 Can things be done in a way where this is not needed?
 ```
 
-We would tire ourselves out very quickly if we had to open all implementations we use (think map operation on List etc). Could it 
+We would tire ourselves out very quickly if we had to open all implementations we use, for example, the map operation on List. Could it 
 indicate our organisational skills are being used poorly? Are we getting lost in what we are doing all the time as we are going 
 blind looking at code needlessly? I get code blind with things opening and closing all the time.
 
 Usually this happens a lot in test harness organisation. Tests can be viewed as a chore, making it harder to notice when they 
-become a real chore.
+become a real chore. Ideally, you only ever need 2 files open, the code and test and working in both should feel fairly
+intuitive with a small amount of experience in a project.
 
 ## Too many things in the current code scope, impossible to remember, broken muscle memory
 
-At the start of our project when it is empty, we can go fast as things are light. There are custom few files to have to refer to, 
+At the start of our project when it is empty, we can go fast as things are light. There are few custo files to have to refer to, 
 we are at a point working from memory is easy, we are not overloaded by unneeded context all the time. We are also at the point
 where we probably don't think that much about organisation as we can do things like just use inheritance all the time for re-use
 (over abusing traits in an opportunistic fashion) etc. I catch myself doing it, I quite often wrongly intuitively go for it after 20 years
@@ -25,14 +26,15 @@ as I believe I can re-organise it better later.
 Unfortunately, bad habits breed in an application owned by a team and this pattern does get taken to the point of destruction.
 I might be able to clean it up, but by that time it is a much bigger headache, with a much bigger discussion.
 
-In an ideal world, you would not have to open files to refer to them all the time. Though it is less of an issue with technologies
-that are common as absorption will happen over time, a much bigger issue for custom logic that has people coming in and out of projects
-as it will have a very large absorption time and in that time muscle-memory will be fairly useless. That slows people down and makes 
+In an ideal world, you would not have to open files to refer to them all the time. Though it is less of an issue, though still annoying, are technologies
+that are common as absorption will happen over time. It is a much bigger issue for custom logic as people coming in and out of the project
+will have a very large absorption time and in that time muscle memory will be fairly useless. That slows people down and makes 
 programming a lot less fun. Like wearing concrete boots when swimming. To many files open, too much context all the time from autocomplete
-being swapped, increased tiredness.
+being swamped, increased tiredness.
 
-Writing software is about being able to maintain pace. If we organise things in a way that gets us tired, how long we can go for is affected.
-Also, when we are tired, we make mistakes. 
+Writing software is about being able to maintain pace. If we organise things in a way that gets us tired, then how long we can go for is affected.
+Also, when we are tired, we make mistakes and some of us may start to get grumpy. Correctness > Agreeableness in programming due to consequences, people get a lot less agreeable when things go wrong, but we should work in a way that helps increase our energy levels
+for things like patience. 
 
 ## Think of classes as ways to help with mental categorisation and branch points we can refer to easily from memory
 
@@ -45,10 +47,10 @@ Using procedures, maybe procedures in modules to help with namespacing. This hel
 needed function calls got harder as things get lost in noise. The need to heavily memorize starts to seep in and the person with the best memory tends
 to be able to perform the best.
 
-Though move that person to a different environment, they will be nerfed until they get to that point again. 
-This affects the ability to move people between projects and time needed to get new people productive. In fact, productive can get to 
-the point no-one really is that productive. Why some people like green field projects, though it would be better for them to learn how 
-not to get to that point so the new projects don't end up the same.
+Move that person to a different environment, they will be nerfed until they get to that point again. 
+This affects the ability to move people between projects and the time needed to get new people productive. In fact, productive can get to 
+the point no-one really is that productive. This is why some people like green field projects, though it would be better for them to learn how 
+not to get to that point else new projects don't end up the same. We learn from experience.
 
 OO is about real world modelling, though it can fail when getting exotic with inheritance. The classic problems such as say modelling birds. We
 have a fly() on the base Bird interface, and then we get to penguins. We now have hit concepts like FlyingBird, SwimmingOnlyBird and FlyingSwimmingBird.
@@ -181,13 +183,13 @@ object BranchedOrganisation {
 
 Context is held in the field names. We just need to remember the contexts related to the test such as DB, AWSS3 etc. and
 logic we want is easily findable. We only have to remember 5 things, this can absorb into muscle memory very fast, and we
-do not have to concern ourselvs with actions unrelated to the context we want to operate in. Also new contexts get added 
-quite slowly, for example maybe SQS over time.
+do not have to concern ourselves with actions unrelated to the context we want to operate in. Also, new contexts get added 
+quite slowly, for example, we may add SQS over time.
 
 We only don't care about method name uniqueness (resetServer2 can now be resetServer) as we do not worry about conflicts.
 Makes naming easier.
 
-Model we now have to maybe remember.
+The model that we now have to maybe remember.
 
 ![cleaner-base-spec.png](images/codeorganisation/cleaner-base-spec.png)
 
@@ -207,5 +209,85 @@ that makes our tooling more effective to get around this.
 
 ![db-actions-autocomplete.png](images/codeorganisation/db-actions-autocomplete.png)
 
+#### Alternate way to just add traits on
 
+We can fake instances by having an inner object in the trait
 
+```scala
+
+object FlatOrganisationWithFakeBranching {
+  trait DbActions {
+    object dbActions {
+      def setupUser(user: String): Unit = ???
+
+      def getUser(user: String): Unit = ???
+
+      def deleteUser(user: String): Unit = ???
+    }
+  }
+
+  trait WiremockActionsForServer1 {
+    object wiremockActionsForServer1 {
+      def resetServer1: Unit = ???
+
+      def stubServer1Get(status: Int): Unit = ???
+    }
+  }
+
+  trait WiremockActionsForServer2 {
+    object wiremockActionsForServer2 {
+      def resetServer2: Unit = ???
+
+      def stubServer2Get(status: Int): Unit = ???
+    }
+  }
+
+  trait WiremockActionsForServer3 {
+    object wiremockActionsForServer3 {
+      def resetServer3: Unit = ???
+
+      def stubServer3Get(status: Int): Unit = ???
+    }
+  }
+
+  trait AwsS3Actions {
+    object awsS3Actions {
+      def resetAws: Unit = ???
+
+      def uploadToBucket(value: String) = ???
+
+      def getEntriesInBucket: List[String] = ???
+    }
+  }
+
+  abstract class LessMessyBaseSpec
+    extends DbActions
+      with WiremockActionsForServer1
+      with WiremockActionsForServer2
+      with WiremockActionsForServer3
+      with AwsS3Actions
+
+  class LessMessyTest extends LessMessyBaseSpec {}
+
+}
+
+```
+
+Which diagrams to
+
+![less-messy-base-spec.png](images/less-messy-base-spec.png)
+
+We get similar grouping to 
+
+```scala
+  abstract class CleanerBaseSpec {
+    protected val dbActions = new DbActions
+    protected val wiremockActionsForServer1 = new WiremockActionsForServer1
+    protected val wiremockActionsForServer2 = new WiremockActionsForServer2
+    protected val wiremockActionsForServer3 = new WiremockActionsForServer3
+    protected val awsS3Actions = new AwsS3Actions
+  }
+```
+
+And it is also very easy to move to instances later if we do want to move to a class that has a constructors. Still lazy
+and also more productive than the FlatOrganisation method.
