@@ -39,6 +39,62 @@ object FlatOrganisation {
 
 }
 
+object FlatOrganisationWithFakeBranching {
+  trait DbActions {
+    object dbActions {
+      def setupUser(user: String): Unit = ???
+
+      def getUser(user: String): Unit = ???
+
+      def deleteUser(user: String): Unit = ???
+    }
+  }
+
+  trait WiremockActionsForServer1 {
+    object wiremockActionsForServer1 {
+      def resetServer1: Unit = ???
+
+      def stubServer1Get(status: Int): Unit = ???
+    }
+  }
+
+  trait WiremockActionsForServer2 {
+    object wiremockActionsForServer2 {
+      def resetServer2: Unit = ???
+
+      def stubServer2Get(status: Int): Unit = ???
+    }
+  }
+
+  trait WiremockActionsForServer3 {
+    object wiremockActionsForServer3 {
+      def resetServer3: Unit = ???
+
+      def stubServer3Get(status: Int): Unit = ???
+    }
+  }
+
+  trait AwsS3Actions {
+    object awsS3Actions {
+      def resetAws: Unit = ???
+
+      def uploadToBucket(value: String) = ???
+
+      def getEntriesInBucket: List[String] = ???
+    }
+  }
+
+  abstract class LessMessyBaseSpec
+      extends DbActions
+      with WiremockActionsForServer1
+      with WiremockActionsForServer2
+      with WiremockActionsForServer3
+      with AwsS3Actions
+
+  class LessMessyTest extends LessMessyBaseSpec {}
+
+}
+
 object BranchedOrganisation {
   class DbActions {
     def setupUser(user: String): Unit = ???
