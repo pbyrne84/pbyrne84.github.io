@@ -17,7 +17,7 @@ intuitive with a small amount of experience in a project.
 
 ## Too many things in the current code scope, impossible to remember, broken muscle memory
 
-At the start of our project when it is empty, we can go fast as things are light. There are few custo files to have to refer to, 
+At the start of our project when it is empty, we can go fast as things are light. There are few custom files to have to refer to, 
 we are at a point working from memory is easy, we are not overloaded by unneeded context all the time. We are also at the point
 where we probably don't think that much about organisation as we can do things like just use inheritance all the time for re-use
 (over abusing traits in an opportunistic fashion) etc. I catch myself doing it, I quite often wrongly intuitively go for it after 20 years
