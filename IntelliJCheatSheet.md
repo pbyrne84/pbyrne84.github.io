@@ -48,29 +48,6 @@ On the Mac also
 Cmd+Shift+A hotkey opens Terminal with "apropos" search instead of the Find Action dialog
 ```
 
-### Default back to Intellij file browser in OSX
-I prefer the Jetbrains file browser as it has buttons to go to the location of the current project and can type
-in the path without doing CND-SHIFT-G etc. Finder feels pre-windows XP in design and usability.
-
-**ide.mac.file.chooser** off
-
-![file-browser-registry.png](images/intellij/file-browser-registry.png)
-
-What the Intellij file browser looks like  
-![intellij-file-browser.png](images/intellij/intellij-file-browser.png)
-
-Options at the top are
-* Home directory
-* Desktop directory
-* Project directory (I use this a lot a usually I want to navigate to a sibling project that is not in my recent history easily)
-* Module directory
-* New directory
-* Delete
-* Refresh
-* Show hidden files and directories (Also very useful)
-
-As the path can also always be shown it makes it easy to copy it.
-
 
 ## Most used keyboard shortcuts
 Alt is the weird track like key near command on the Mac (using Alt is too simple)
@@ -101,6 +78,38 @@ AceJump allows you to quickly navigate the caret to any position visible in the 
 type a character, then type the matching character to Ace Jump.
 ```
 
+
+### Ctrl-Shift-Space Smart Code Complete 
+
+This will only show relevant things that can be completed using the type system to determine them. I use this far more 
+than normal code complete. 
+
+![smart_complete_1.png](images/intellij/smart_complete_1.png)
+
+Plus it saves you having to pick the right type from many classes with the same name and handle the right import. 
+Classes with the same name in a project can cause a lot of needless very picky context analysis, which can feel very 
+cumbersome and error-prone. I always end up doing the wrong one. This problem is heavily lessened on consumption using smart complete. 
+
+For example, there are 2 types of File, scala and java. This will just offer the correct one and handle the import.
+We can then use the following: -  
+
+![smart_complete_2.png](images/intellij/smart_complete_2.png)
+
+We can then do the "Extract variable refactoring" to shove it in a val, etc. This is detailed below
+
+![smart_complete_3.png](images/intellij/smart_complete_3.png)
+
+#### Duplicate naming in a project is a headache/causes headaches (literally)
+I would add that it is ideal to name things for simple verbal communication, so unique names in a project are heavily 
+preferable as it reduces the complexity in human communication and building mental associations/memory.
+Package/Folder layouts are for easy exploring, not verbal communication. The rate a system can enter our memory affects the complexity the system can reach before we have major problems working with it.
+The worst projects I have worked on use a lot of duplicate naming separated by folders/packages. You end up with lots of things with the same 
+name, it makes it highly arduous to mentally track things while working on a problem as it completely messes with things like visual recognition, etc.
+A great way to make the whole team slow and miserable.
+
+We unfortunately have a habit of thinking headaches are normal due to the nature of the work, so we miss the fact that 
+sometimes we don't need to be having the current one. Plus, it can be accumulative, so the headache from this is adding 
+to the general headache of the problem we are working on.
 
 ### Cmd-Shift-A (Ctrl-shift-A) Run Action
 
