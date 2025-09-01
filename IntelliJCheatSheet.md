@@ -289,6 +289,10 @@ Used instead of tabs at the top.
 This greedy searches so typing things like ee with match this filename in the list. Plus you can flick between files as the 
 previous file will be first selected.
 
+You can increase the size of the list by going to advance settings 
+
+![increase-recent-file-list-size.png](images/intellij/increase-recent-file-list-size.png)
+
 ### Cmd-O (ctrl-N) Navigate to class/trait etc.
 ![navigate-class.png](images/intellij/navigate-class.png)
 
