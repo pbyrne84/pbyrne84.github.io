@@ -27,16 +27,22 @@ On Mac's things can get a bit random so some things may be like Linux/Windows. H
 people asked for keymaps to be OSX centric when coming to WebStorm etc. so there was a divergence.
 
 ## Tips
-### Turn on function keys as default instead of Touch-bar etc. as hitting Fn key will be highly contorting and make things uncomfortable
+### Turn on function keys as default, as hitting Fn key will be highly contorting and make things uncomfortable. Go much faster without AI
 Hints for MacBook owners, turn on function keys as F2(next/previous highlighted error), shift-F6(rename) and alt-f7 (find usages) 
 are your best-est friends. Hitting Fn key is very uncomfortable, and hitting the function keys should be the same as hitting
 any other key. How often do you really need to change volume control etc.? Find usages alone is a multi use per hour action.
 
-**System settings->keyboard->touchbar settings**
+#### Goto keyboard
+![mac-keyboard-settings.png](images/intellij/mac-keyboard-settings.png)
 
-![disable-the-devil-spawn.png](images/intellij/disable-the-devil-spawn.png)
+#### Under Keyboard Shortcuts
 
-Sometimes different is just differemt for the sake of it.
+##### Enable function keys
+![enable-function-keys.png](images/intellij/enable-function-keys.png)
+
+##### Re-enable auto-complete by keyboard if needed as OSX now likes to periodically take it over
+![re-enable-auto-complete.png](re-enable-auto-complete.png)
+
 
 ### Cmd+Shift-A (Ctrl-shift-a on Linux and Windows)
 Cmd+Shift-A is the most useful shortcut as it helps you find and use any command (displays shortcut as well). On Windows/Linux 
